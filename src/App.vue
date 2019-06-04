@@ -25,6 +25,7 @@
             </b-nav-form>
             <b-nav-item-dropdown right>
               <template slot="button-content"><i class="fas fa-user-circle" ></i></template>
+              <b-dropdown-item v-if="this.status == true" href="#">HI,{{name}}<i class="far fa-smile"></i></b-dropdown-item>
               <b-dropdown-item @click="goLogIn()" v-if="this.status == false">LOG IN</b-dropdown-item>
               <b-dropdown-item @click="logOut()" v-if="this.status == true">LOG OUT</b-dropdown-item>
             </b-nav-item-dropdown>
@@ -59,6 +60,7 @@ export default {
     return {
       text:"LOG IN",
       status:false,
+      name:'',
     }
 
   },
@@ -70,6 +72,10 @@ export default {
   updated() {
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.status = JSON.parse(localStorage.getItem('signinStatus')) 
+    }
+    if (localStorage.getItem('name')) {
+      console.log('updated',localStorage.getItem('name'))
+      this.name = localStorage.getItem('name')
     }
 
   },
@@ -89,6 +95,7 @@ export default {
       if (type == 'Google') {
         Vue.googleAuth().signOut(function() {
           vm.status = false
+          vm.name = ''
           localStorage.clear()
         }, function(error) {
           console.log('signOut() Fail')
@@ -98,6 +105,7 @@ export default {
           if (response.status == "unknown") {
             localStorage.clear()
             vm.status = false
+            vm.name = ''
           } else {
             console.log('fb登出失敗')
           }

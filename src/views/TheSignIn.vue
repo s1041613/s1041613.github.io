@@ -6,9 +6,9 @@
           <div style="font-size:60px;">SIGN IN</div>
           <div style="font-size:25px;">會員登錄</div>
         </div>
-        <div @click="googleLogIn()"><button style="font-size:20px;">Google登入</button></div>
+        <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
         <hr size="1" width="100%">
-        <div @click="fbLogIn()"><button style="font-size:20px;">FB登入</button></div>
+        <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
       </div>
 
     </div>
@@ -60,8 +60,11 @@ export default {
         localStorage.setItem("signinStatus", true)
       } 
       var prof = googleUser.getBasicProfile()
+      console.log('googleUser.getBasicProfile()',googleUser.getBasicProfile())
       vm.signinEmail = prof.getEmail()
+      let name = prof.ig 
       localStorage.setItem("googleSignInEmail", vm.signinEmail) //localstroage remembers user is signed in
+      localStorage.setItem("name",name)
       this.$router.push({name:'TheHome' , params:{ status:true }})
     },
     googleOnSignInError(error) {
@@ -151,6 +154,72 @@ $font:serif;
   align-items: center;
   line-height: 50px;
 
+}
+
+/* Shared */
+.loginBtn {
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  margin: 0.2em;
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  border-radius: 0.2em;
+  font-size: 16px;
+  color: #FFF;
+}
+//圖片部分
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+
+/* Facebook */
+.loginBtn--facebook {
+  background-color: #4C69BA;
+  background-image: linear-gradient(#4C69BA, #3B55A0);
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  text-shadow: 0 -1px 0 #354C8C; //
+}
+.loginBtn--facebook:before {
+  border-right: #364e92 1px solid; //分隔線
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
+}
+.loginBtn--facebook:hover,
+.loginBtn--facebook:focus {
+  background-color: #5B7BD5;
+  //設置多背景
+  background-image: linear-gradient(#5B7BD5, #4864B1);
+}
+
+
+/* Google */
+.loginBtn--google {
+  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  background: #DD4B39;
+}
+.loginBtn--google:before {
+  border-right: #BB3F30 1px solid;
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+}
+.loginBtn--google:hover,
+.loginBtn--google:focus {
+  background: #E74B37;
 }
 
 
