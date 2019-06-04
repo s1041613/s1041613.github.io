@@ -59,7 +59,7 @@ export default {
       var prof = googleUser.getBasicProfile()
       vm.signinEmail = prof.getEmail()
       localStorage.setItem("signinEmail", vm.signinEmail) //localstroage remembers user is signed in
-      this.$router.push({path:'/home'})
+      this.$router.push({path:'/'})
     },
     onSignInError(error) {
       this.response = 'Failed to sign-in'
