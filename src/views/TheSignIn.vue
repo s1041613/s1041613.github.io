@@ -79,8 +79,8 @@ export default {
         console.log('res in graphAPI', response)
         let name = response.name
         let email = response.email
-        localStorage.setItem("fbName",name)
-        localStorage.setItem("fbSignInEmail",email)
+        localStorage.setItem("Name",name)
+        localStorage.setItem("SignInEmail",email)
       })
     },
     fbLogIn(){
