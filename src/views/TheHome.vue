@@ -6,12 +6,12 @@
 
 <script>
 import BasePictureArea from '../components/BasePictureArea.vue'
-import BaseItemArea from '../components/BaseItemArea.vue'
-import hotItem from '../json/hotItem.json'
+// import BaseItemArea from '../components/BaseItemArea.vue'
+
 export default {
   components: {
     BasePictureArea,
-    BaseItemArea
+    // BaseItemArea
   },
   data() {
     return {
