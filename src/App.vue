@@ -1,59 +1,49 @@
 <template>
   <div>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="dark">
-        <b-navbar-brand @click="goHome()">CHOU SHOP</b-navbar-brand>
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <div @click="openNav()"><i style="font-size:40px;position:absolute;z-index:10;top:5%;left:3%" class="fas fa-align-justify"></i></div>
+    
+    <div class="icon">
+      <div @click="goLogIn()" class="login" v-if="this.status == false">
+        <img src="./assets/account.png" style="
+        width:4vw;
+        height:6vh;">
+      </div>
+      <div @click="goShopCart()">
+        <img src="./assets/shopcart.png" style="
+        width:4vw;
+        height:6vh;" />
+      </div>
+      <div @click="logOut()" v-if="this.status == true">
+        <i style="font-size:40px" class="fas fa-sign-out-alt"></i>
+      </div>
+    </div>
 
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item-dropdown text="NEW IN" right>
-              <b-dropdown-item href="#">MAY.21</b-dropdown-item>
-              <b-dropdown-item href="#">MAY.22</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item-dropdown text="ITEMS" right>
-              <b-dropdown-item href="#">ON</b-dropdown-item>
-              <b-dropdown-item href="#">DOWN</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
+    
+ 
 
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <b-nav-form>
-              <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
-              <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-            </b-nav-form>
-            <b-nav-item-dropdown right>
-              <template slot="button-content"><i class="fas fa-user-circle" ></i></template>
-              <b-dropdown-item v-if="this.status == true" href="#">HI,{{name}}<i class="far fa-smile"></i></b-dropdown-item>
-              <b-dropdown-item @click="goLogIn()" v-if="this.status == false">LOG IN</b-dropdown-item>
-              <b-dropdown-item @click="logOut()" v-if="this.status == true">LOG OUT</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item @click="goShopCart()">
-              <i class="fas fa-cart-plus"></i>
-            </b-nav-item>
-            <b-nav-item @click="goQA()">
-              <i class="fas fa-question-circle"></i>
-            </b-nav-item>
-            <b-nav-item-dropdown right>
-              <template slot="button-content"><i class="fas fa-globe-asia"></i></template>
-              <b-dropdown-item href="#">EN</b-dropdown-item>
-              <b-dropdown-item href="#">CH</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item>
-              <i class="fas fa-money-check-alt"></i>
-            </b-nav-item>
-          </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>    
+
+ 
+  
+    <div v-if="this.$route.meta.showTitle == true" @click="goHome()" style="position:absolute;z-index:10;top:8%;transform:translate(-50%, -50%);left: 50%; ">
+      <img src="./assets/logo.png" style="width:25vw;height:15vh;">
+    </div>
+    <div id="navText" v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%">
+      <div style="font-size:40px;">上衣</div>
+      <div style="font-size:40px;">褲子</div>
+      <div style="font-size:40px;">風格</div>
+      <div style="font-size:30px;">復古</div>
+      <div style="font-size:30px;">簡約</div>
+      <div style="font-size:30px;">丹寧</div>
+    </div>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import store from './store.js'
 import Vue from 'vue'
 export default {
+  store,
   components: {
   },
   data() {
@@ -61,33 +51,59 @@ export default {
       text:"LOG IN",
       status:false,
       name:'',
+      open:false,
     }
 
   },
   created() {
+    console.log(this.$route.meta.showTitle)
+    //console.log(this.status,this.name)
+    //console.log(JSON.parse(localStorage.getItem('signinStatus')),localStorage.getItem('name'))
+    if (JSON.parse(localStorage.getItem('signinStatus'))) {
+      this.status = JSON.parse(localStorage.getItem('signinStatus')) 
+    }
+    if (localStorage.getItem('name')) {
+      //console.log('updated',localStorage.getItem('name'))
+      this.name = localStorage.getItem('name')
+    }
+  
+
   },
   watch: {
 
   },
   updated() {
+    //console.log(this.status,this.name)
+    //console.log(JSON.parse(localStorage.getItem('signinStatus')),localStorage.getItem('name'))
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.status = JSON.parse(localStorage.getItem('signinStatus')) 
     }
     if (localStorage.getItem('name')) {
-      console.log('updated',localStorage.getItem('name'))
+      //console.log('updated',localStorage.getItem('name'))
       this.name = localStorage.getItem('name')
     }
 
   },
   computed: {
+    // a() {
+    //   this.$store.dispatch('actionShowLogo')
+    // },
+    // status() {
+    //   this.status = JSON.parse(localStorage.getItem('signinStatus'))
+    //   return  this.status
+    // }
     
   },
   methods: {
-    goHome() {
-      this.$router.push('/')
+    openNav(){
+      this.open = !this.open
     },
+
     goLogIn() {
       this.$router.push('/TheSignIn')
+    },
+    goHome(){
+      this.$router.push('/')
     },
     logOut() {
       var vm = this
@@ -124,6 +140,14 @@ export default {
     },
   },
   mounted() {
+    // if (JSON.parse(localStorage.getItem('signinStatus'))) {
+    //   this.status = JSON.parse(localStorage.getItem('signinStatus')) 
+    // }
+    // if (localStorage.getItem('name')) {
+    //   console.log('updated',localStorage.getItem('name'))
+    //   this.name = localStorage.getItem('name')
+    // }
+      
       //FB初始化
       window.fbAsyncInit = function() {
       FB.init({
@@ -147,45 +171,37 @@ export default {
 </script>
 
 <style lang="scss">
-
-.menu-bar{
-  outline:2px solid;
-  display: flex;
-  padding: 15px;
-  margin-bottom: 0.6vh;
-  // background-color:rgba(0,0,0,0.2)
-}
-.logo{
-  flex:2.5;
-}
-.middle{
-  flex:2.5;
-  display:flex;
-  font-size:25px;
-  font-family:serif;
-}
-.middle > div{
+.tip{
   width:100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  height:120px;
+  // outline: 2px solid;
+  padding:5px;
+  display: none;
 }
-.icon-list{
-  display: flex;
-  justify-content:flex-end;
-  flex:5;
-  font-size: 35px;
-  letter-spacing:15px; 
-}
-.router-link{
-  text-decoration: none;
-  color:black;
-}
-.router-link-active{
-  text-decoration: none;
-  color:palevioletred;
-  cursor: pointer;  
+.tip div{
+  font-size: 20px;
+ 
 }
 
+.login:hover .tip{
+  position: absolute;
+  display: block;
+  background-color: rgba(158, 155, 155, 0.5);
+  //background-image: linear-gradient(to left top,#E6C3C3,#FFE4E1);
+  top:12%;
+  right:5%;
+  z-index: -1;
+}
+.icon{
+  width:150px;
+  position:absolute;
+  z-index:10;
+  top:5%;
+  right: 5%;
+  display: flex;
+  justify-content:space-between;
+
+
+  
+}
 </style>

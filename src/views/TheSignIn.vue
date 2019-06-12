@@ -4,16 +4,16 @@
       <div class="border">
         <div class="child">
           <div style="font-size:60px;">SIGN IN</div>
-          <div style="font-size:25px;">會員登錄</div>
-        </div>
-        <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
-        <hr size="1" width="100%">
-        <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
+          <div style="line-height:80px;">
+            <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
+            <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
+          </div>
       </div>
 
     </div>
 
 
+  </div>
   </div>
 </template>
 
@@ -132,27 +132,26 @@ $font:serif;
 
 }
 .layout{
+  // outline: 2px solid;
   @extend %all-need;
   justify-content: center;
   align-items: center;
-  height:86vh;
+  height: 100vh;
 }
 .border{
   @extend %all-need;
-  outline: 2px solid red;
   padding: 50px;
-  width: 38vw;
-  height:70vh;
+  width: 40vw;
+  height:50vh;
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  line-height: 100px;
 }
 .child{
   @extend %all-need;
   flex-direction:column;
   align-items: center;
-  line-height: 50px;
+  // line-height: 50px;
 
 }
 

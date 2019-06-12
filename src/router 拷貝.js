@@ -6,7 +6,7 @@ import TheNewIn from './views/TheNewIn.vue'
 import TheQA from './views/TheQA.vue'
 import TheShopCart from './views/TheShopCart.vue'
 import TheSignIn from './views/TheSignIn.vue'
-import BasePictureArea from './components/BasePictureArea.vue'
+
 
 Vue.use(Router)
 export default new Router({
@@ -19,58 +19,33 @@ export default new Router({
       path: '/',
       name: 'TheHome',
       component: TheHome,
-      meta: {
-        showTitle: false,
-      }
 
     },
     {
       path: '/TheItems',
       name: 'TheItems',
-      component: TheItems,
-      meta: {
-        showTitle: true,
-      }
+      component: TheItems
     },
     {
       path: '/TheNewIn',
       name: 'TheNewIn',
-      component: TheNewIn,
-      meta: {
-        showTitle: true,
-      }
+      component: TheNewIn
     },
     {
       path: '/TheQA',
       name: 'TheQA',
-      component: TheQA,
-      meta: {
-        showTitle: true,
-      }
+      component: TheQA
     },
     {
       path: '/TheShopCart',
       name: 'TheShopCart',
-      component: TheShopCart,
-      meta: {
-        showTitle: true,
-      }
+      component: TheShopCart
     },
     {
       path: '/TheSignIn',
       name: 'TheSignIn',
-      component: TheSignIn,
-      meta: {
-        showTitle: true,
-      }
+      component: TheSignIn
     },
-    {
-      path: '/BasePictureArea',
-      name: 'BasePictureArea',
-      component: BasePictureArea,
-      meta: {
-        showTitle: true,
-      }
-    },
+
   ]
 })
