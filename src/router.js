@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TheHome from './views/TheHome.vue'
-import TheItems from './views/TheItems.vue'
-import TheNewIn from './views/TheNewIn.vue'
+import TheBtttom from './views/TheBtttom.vue'
+import TheClothes from './views/TheClothes.vue'
+
+import TheOldSchool from './views/TheOldSchool.vue'
+import TheEasy from './views/TheEasy.vue'
+import TheDaning from './views/TheDaning.vue'
+
 import TheQA from './views/TheQA.vue'
 import TheShopCart from './views/TheShopCart.vue'
 import TheSignIn from './views/TheSignIn.vue'
-import BasePictureArea from './components/BasePictureArea.vue'
+
 
 Vue.use(Router)
 export default new Router({
@@ -25,17 +30,41 @@ export default new Router({
 
     },
     {
-      path: '/TheItems',
-      name: 'TheItems',
-      component: TheItems,
+      path: '/TheBtttom',
+      name: 'TheBtttom',
+      component:TheBtttom,
       meta: {
         showTitle: true,
       }
     },
     {
-      path: '/TheNewIn',
-      name: 'TheNewIn',
-      component: TheNewIn,
+      path: '/TheClothes',
+      name: 'TheClothes',
+      component:TheClothes,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/TheOldSchool',
+      name: 'TheOldSchool',
+      component:TheOldSchool,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/TheEasy',
+      name: 'TheEasy',
+      component:TheEasy,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/TheDaning',
+      name: 'TheDaning',
+      component:TheDaning,
       meta: {
         showTitle: true,
       }
@@ -60,14 +89,6 @@ export default new Router({
       path: '/TheSignIn',
       name: 'TheSignIn',
       component: TheSignIn,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/BasePictureArea',
-      name: 'BasePictureArea',
-      component: BasePictureArea,
       meta: {
         showTitle: true,
       }

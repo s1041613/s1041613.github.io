@@ -1,12 +1,9 @@
 <template>
   <div>
-    <div @click="openNav()"><i style="font-size:40px;position:absolute;z-index:10;top:5%;left:3%" class="fas fa-align-justify"></i></div>
-    
+    <div  @click="openNav()"><i class="fas fa-align-justify nav"></i></div>
     <div class="icon">
       <div @click="goLogIn()" class="login" v-if="this.status == false">
-        <img src="./assets/account.png" style="
-        width:4vw;
-        height:6vh;">
+        <img src="./assets/account.png">
       </div>
       <div @click="goShopCart()">
         <img src="./assets/shopcart.png" style="
@@ -18,22 +15,18 @@
       </div>
     </div>
 
-    
- 
-
-
- 
-  
-    <div v-if="this.$route.meta.showTitle == true" @click="goHome()" style="position:absolute;z-index:10;top:8%;transform:translate(-50%, -50%);left: 50%; ">
-      <img src="./assets/logo.png" style="width:25vw;height:15vh;">
+    <div v-if="this.$route.meta.showTitle == true" @click="goHome()" class="title">
+      <img src="./assets/logo.png">
     </div>
-    <div id="navText" v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%">
-      <div style="font-size:40px;">上衣</div>
-      <div style="font-size:40px;">褲子</div>
-      <div style="font-size:40px;">風格</div>
-      <div style="font-size:30px;">復古</div>
-      <div style="font-size:30px;">簡約</div>
-      <div style="font-size:30px;">丹寧</div>
+    <div v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%">
+      <div @click="goTheClothes()" class="navText" >上衣</div>
+      <div @click="goTheButtom()" class="navText">褲子</div>
+      <div @click="openNav2()" class="navText">風格</div>
+      <div v-if="this.open2 == true">
+        <div @click="goTheOldSchool()" class="navText2">復古</div>
+        <div @click="goTheEasy()" class="navText2">簡約</div>
+        <div @click="goTheDaning()" class="navText2">丹寧</div>
+      </div>
     </div>
     <router-view></router-view>
   </div>
@@ -52,6 +45,7 @@ export default {
       status:false,
       name:'',
       open:false,
+      open2:false,
     }
 
   },
@@ -98,6 +92,26 @@ export default {
     openNav(){
       this.open = !this.open
     },
+    openNav2(){
+      this.open2 = !this.open2
+    },
+    goTheClothes(){
+      this.$router.push('/TheClothes')
+
+    },
+    goTheButtom(){
+      this.$router.push('/TheBtttom')
+    },
+    goTheOldSchool(){
+      this.$router.push('/TheOldSchool')
+    },
+    goTheEasy(){
+      this.$router.push('/TheEasy')
+    },
+    goTheDaning(){
+      this.$router.push('/TheDaning')
+    },
+
 
     goLogIn() {
       this.$router.push('/TheSignIn')
@@ -171,26 +185,15 @@ export default {
 </script>
 
 <style lang="scss">
-.tip{
-  width:100px;
-  height:120px;
-  // outline: 2px solid;
-  padding:5px;
-  display: none;
+.nav{
+  font-size:40px;
+  position:absolute;
+  z-index:10;
+  top:5%;
+  left:3%
 }
-.tip div{
-  font-size: 20px;
- 
-}
-
-.login:hover .tip{
-  position: absolute;
-  display: block;
-  background-color: rgba(158, 155, 155, 0.5);
-  //background-image: linear-gradient(to left top,#E6C3C3,#FFE4E1);
-  top:12%;
-  right:5%;
-  z-index: -1;
+.nav:hover{
+  opacity: 0.4;
 }
 .icon{
   width:150px;
@@ -200,8 +203,38 @@ export default {
   right: 5%;
   display: flex;
   justify-content:space-between;
-
-
-  
+  img{
+    width:4vw;
+    height:6vh;
+  }
+  img:hover{
+  opacity: 0.4;
+  }
+}
+.title{
+  position:absolute;
+  z-index:10;
+  top:8%;
+  transform:translate(-50%, -50%);
+  left: 50%;
+  img{
+    width:25vw;
+    height:15vh;
+  }
+  img:hover{
+    opacity: 0.4;
+  }
+}
+.navText{
+  font-size: 40px;
+}
+.navText:hover{
+  opacity: 0.4;
+}
+.navText2{
+  font-size: 30px;
+}
+.navText2:hover{
+  opacity: 0.4;
 }
 </style>

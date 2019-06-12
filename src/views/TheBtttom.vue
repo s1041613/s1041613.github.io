@@ -1,19 +1,15 @@
 <template>
   <div>
     <router-view></router-view>
-    <BasePictureArea></BasePictureArea>
-    <!-- <BaseItemArea></BaseItemArea> -->
 
   </div>
 </template>
 
 <script>
-import BasePictureArea from '../components/BasePictureArea.vue'
-// import BaseItemArea from '../components/BaseItemArea.vue'
+
 export default {
   components: {
-    BasePictureArea,
-    // BaseItemArea
+
   },
   data() {
     return {
