@@ -4,7 +4,7 @@
       <swiper :options="swiperOption" ref="mySwiper" class="swiper">
         <!-- slides -->
         <swiper-slide  v-for="item in items" :key="item.key" class="box"> 
-            <img :src="item" style="width:100vw;height:100vh;display:block" >     
+            <img :src="item" style="width:100vw;height:100vh;display:block;opacity:0.7" >     
         </swiper-slide>
         <!-- Optional controls -->
         <!-- 小圓點-->
@@ -114,6 +114,7 @@ export default {
 
 <style lang="scss">
 .pictureArea{
+  
   height: 100vh;
   width: 100vw;
 }

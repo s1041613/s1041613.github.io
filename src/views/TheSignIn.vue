@@ -128,17 +128,19 @@ $font:serif;
 %all-need{
   display:flex;
   font-family:$font;
-  box-sizing:border-box;
+  // box-sizing:border-box;
 
 }
 .layout{
-  // outline: 2px solid;
+
   @extend %all-need;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 .border{
+  // outline: 2px solid;
+  // background-color:rgba(255,128,153,0.1) ;
   @extend %all-need;
   padding: 50px;
   width: 40vw;
@@ -152,6 +154,7 @@ $font:serif;
   flex-direction:column;
   align-items: center;
   // line-height: 50px;
+  
 
 }
 
