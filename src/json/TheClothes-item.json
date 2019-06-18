@@ -1,43 +1,68 @@
 [
   {
-    "name": "查理布朗短T",
+    "id":"1",
+    "name": "查理布朗短",
     "money": 260,
-    "img": "assets/1.png"
+    "img": "assets/1.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
+
   },
   {
-    "name": "查理‧布朗漫畫長版T",
+    "id":"2",
+    "name": "查理‧布朗漫畫長版",
     "money": 200,
-    "img": "assets/2.png"
+    "img": "assets/2.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理‧布朗漫畫長版T",
+    "id":"3",
+    "name": "查理‧布朗漫畫長版",
     "money": 200,
-    "img": "assets/3.png"
+    "img": "assets/1.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理布朗短T",
+    "id":"4",
+    "name": "查理布朗短",
     "money": 260,
-    "img": "assets/4.png"
+    "img": "assets/4.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理‧布朗漫畫長版T",
+    "id":"5",
+    "name": "查理‧布朗漫畫長版",
     "money": 200,
-    "img": "assets/5.png"
+    "img": "assets/5.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理‧布朗漫畫長版T",
+    "id":"6",
+    "name": "查理‧布朗漫畫長版",
     "money": 200,
-    "img": "assets/6.png"
+    "img": "assets/6.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理布朗短T",
+    "id":"7",
+    "name": "查理布朗短",
     "money": 260,
-    "img": "assets/7.png"
+    "img": "assets/7.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   },
   {
-    "name": "查理‧布朗漫畫長版T",
+    "id":"8",
+    "name": "查理‧布朗漫畫長版",
     "money": 200,
-    "img": "assets/8.png"
+    "img": "assets/8.png",
+    "component_name":"TheClothesItem",
+    "size":"F"
   }
  
 ]

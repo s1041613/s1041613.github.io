@@ -137,6 +137,8 @@ $font:serif;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  // overflow: hidden;
+  // background-image: url(../assets/back.png)
 }
 .border{
   // outline: 2px solid;

@@ -3,7 +3,7 @@
     <div class="layout">
       <div class="clothesArea">
         <div v-for="i in theClothesItem" :key="i.key">
-          <div class="clothesArea-item" >
+          <div class="clothesArea-item" @click="go(i.component_name,i.id,i.img,i.name,i.money,i.size)">
               <img :src="i.img" class='p'> 
               <div class="modal-mask">
                 <div class="show">
@@ -44,6 +44,10 @@ export default {
   
   },
   methods: {
+    go(cname,id,img,name,money,size){
+      console.log(id)
+      this.$router.push({name:cname,query: { id:id ,img:img,name:name,money:money,size:size}})
+    },
 
   },
   mounted() {
@@ -80,7 +84,7 @@ export default {
    display: block;
 }
 .clothesArea-item:hover .p{
-   opacity: 0.4;
+   opacity: 0.5;
 }
 .clothesArea-item:hover .show{
    display: block;
@@ -99,7 +103,6 @@ export default {
   flex-direction: column;
   width:20vw;
   font-size: 20px;
-  opacity: 0.8;
 }
 .modal-mask {
 display:none;

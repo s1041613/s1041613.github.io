@@ -3,11 +3,10 @@
     <div class="layout">
       <div class="noItem">
         <div class="section1-item" style="margin-top:10%;line-height:60px;">
-          <div><i style="font-size:150px;opacity: 0.5;" class="fas fa-shopping-cart"></i></div>
-          <div>您的購物車是空的,記得加入商品喔</div>
+          <div><i style="font-size:200px;opacity:0.5;" class="fas fa-shopping-cart"></i></div>
         </div>
-        <div style="margin-top:5%;">
-          <button @click="goHome()">繼續購物</button>
+        <div style="margin-top:10%;">
+          <img @click="goHome()" src='../assets/gotoshop.png'>
         </div>
       </div>
     </div>
@@ -168,11 +167,15 @@ export default {
   display: flex;
 }
 .noItem{
-
+  width:40vw;
   display: flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  // outline: 2px solid;
+  img{
+    width:10vw;
+  }
 
 }
 </style>

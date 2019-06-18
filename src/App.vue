@@ -1,25 +1,23 @@
 <template>
-  <div>
+  <div id="app">
     <div >
-      <div  @click="openNav()"><i class="fas fa-align-justify nav"></i></div>
       <div class="icon">
         <div @click="goLogIn()" class="login" v-if="this.status == false">
           <img src="./assets/account.png">
         </div>
         <div @click="goShopCart()">
-          <img src="./assets/shopcart.png" style="
-          width:4vw;
-          height:6vh;" />
+          <img src="./assets/shopcart.png" />
         </div>
         <div @click="logOut()" v-if="this.status == true">
-          <i style="font-size:40px" class="fas fa-sign-out-alt"></i>
+          <img src="./assets/logout.png">
         </div>
       </div>
-
       <div v-if="this.$route.meta.showTitle == true" @click="goHome()" class="title">
         <img src="./assets/logo.png">
-      </div>
-      <div v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%">
+      </div> 
+       <!-- background-color:rgba(	255,128,153,0.4); -->
+      <div  @click="openNav()"><i class="fas fa-align-justify nav"></i></div>
+      <div v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%;">
         <div @click="goTheClothes()" class="navText" >上衣</div>
         <div @click="goTheButtom()" class="navText">褲子</div>
         <div @click="openNav2()" class="navText">風格</div>
@@ -33,20 +31,7 @@
     <div style='position: relative;'><router-view></router-view></div>
     <div class="bottom">
       <div class="bottom-item1">
-          <div><img src="./assets/logo.png" style="width:15vw;height:15vh"></div>
-          <div class="bottom-item1-1">
-            <div>
-              <div>全品項</div>
-              <div>上衣</div>
-              <div>褲子</div>
-            </div>
-            <div>
-              <div>風格</div>
-              <div>復古</div>
-              <div>簡約</div>
-              <div>丹寧</div>
-            </div>
-          </div>
+          <!-- <div><img src="./assets/logo.png" style="width:15vw;height:15vh;align-self: flex-end;"></div> -->
           <div>
             <div>與我們聯絡</div>
             <div>+886-0963-082-683</div>
@@ -213,7 +198,12 @@ export default {
 </script>
 
 <style lang="scss">
-
+#app{
+  font-family:"Helvetica Neue", Helvetica, "Lantinghei SC Extralight", "Microsoft JhengHei", "Lucida Grande", 微軟正黑體, Verdana, Arial,  sans-serif;
+  font-weight: 300;
+  color: #333333;
+  background-image: url(./assets/back.png)
+}
 .nav{
   font-size:40px;
   position:absolute;
@@ -223,6 +213,7 @@ export default {
 }
 .nav:hover{
   opacity: 0.4;
+  
 }
 .icon{
   width:150px;
@@ -241,6 +232,7 @@ export default {
   }
 }
 .title{
+
   position:absolute;
   z-index:10;
   top:8%;
@@ -255,19 +247,21 @@ export default {
   }
 }
 .navText{
-  font-size: 40px;
+  font-size: 35px;
   
 }
 .navText:hover{
   opacity: 0.4;
 }
 .navText2{
-  font-size: 30px;
+  font-size: 25px;
 }
 .navText2:hover{
   opacity: 0.4;
 }
 .bottom{
+  box-sizing: border-box;
+  padding:50px;
   position: absolute;
   bottom: -40vh;
   height:40vh;
@@ -275,8 +269,8 @@ export default {
   // outline: 2px solid;
   display: flex;
   flex-direction: column;
-  // justify-content:center;
-  // align-items: center;
+  justify-content:center;
+  align-items: center;
   background-color:rgba(255,128,153,0.2) 
 
 }
@@ -285,16 +279,18 @@ export default {
   // div{
   //   outline: 2px solid;
   // }
+  // width:50vw;
   display: flex;
   justify-content: space-between;
-  padding:50px;
+  
+  
 
 }
-.bottom-item1-1{
-  display: flex;
-  justify-content: space-between;
-  width:8vw;
-}
+// .bottom-item1-1{
+//   display: flex;
+//   justify-content: space-between;
+//   width:8vw;
+// }
 .bottom-item2{
   // outline: 2px solid;
   align-self: center;

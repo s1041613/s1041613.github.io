@@ -1,12 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TheHome from './views/TheHome.vue'
-import TheBtttom from './views/TheBtttom.vue'
+import test from './views/test.vue'
 import TheClothes from './views/TheClothes.vue'
+import TheClothesItem from './views/TheClothesItem.vue'
+
+import TheBtttom from './views/TheBtttom.vue'
+import TheBtttomItem from './views/TheBtttomItem.vue'
 
 import TheOldSchool from './views/TheOldSchool.vue'
+import TheOldSchoolItem from './views/TheOldSchoolItem.vue'
+
 import TheEasy from './views/TheEasy.vue'
+import TheEasyItem from './views/TheEasyItem.vue'
+
 import TheDaning from './views/TheDaning.vue'
+import TheDaningItem from './views/TheDaningItem.vue'
 
 import TheQA from './views/TheQA.vue'
 import TheShopCart from './views/TheShopCart.vue'
@@ -30,6 +39,22 @@ export default new Router({
 
     },
     {
+      path: '/TheClothes',
+      name: 'TheClothes',
+      component:TheClothes,
+      meta: {
+        showTitle: true,
+      },
+    },
+    {
+      path: '/TheClothes/clothesItem',
+      name: 'TheClothesItem',
+      component:TheClothesItem,
+      meta: {
+        showTitle: true,
+      },
+    },
+    {
       path: '/TheBtttom',
       name: 'TheBtttom',
       component:TheBtttom,
@@ -38,9 +63,9 @@ export default new Router({
       }
     },
     {
-      path: '/TheClothes',
-      name: 'TheClothes',
-      component:TheClothes,
+      path: '/TheBtttom/btttomItem/:id',
+      name: 'TheBtttomItem',
+      component:TheBtttomItem ,
       meta: {
         showTitle: true,
       }
@@ -54,9 +79,25 @@ export default new Router({
       }
     },
     {
+      path: '/TheOldSchool/oldSchoolItem/:id',
+      name: 'TheOldSchoolItem',
+      component:TheOldSchoolItem,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
       path: '/TheEasy',
       name: 'TheEasy',
       component:TheEasy,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/TheEasy/easyItem/:id',
+      name: 'TheEasyItem',
+      component:TheEasyItem,
       meta: {
         showTitle: true,
       }
@@ -70,9 +111,9 @@ export default new Router({
       }
     },
     {
-      path: '/TheQA',
-      name: 'TheQA',
-      component: TheQA,
+      path: '/TheDaning/daningItem/:id',
+      name: 'TheDaningItem',
+      component:TheDaningItem,
       meta: {
         showTitle: true,
       }
@@ -89,6 +130,22 @@ export default new Router({
       path: '/TheSignIn',
       name: 'TheSignIn',
       component: TheSignIn,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/TheQA',
+      name: 'TheQA',
+      component: TheQA,
+      meta: {
+        showTitle: true,
+      }
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test,
       meta: {
         showTitle: true,
       }
