@@ -269,10 +269,10 @@ export default {
 </script>
 
 <style lang="scss">
-.layout{
-}
+// .layout{
+// }
 .haveItem{
-  outline: 2px solid;
+  // outline: 2px solid;
   margin-top: 10%;
   display: flex;
   flex-direction:column;
