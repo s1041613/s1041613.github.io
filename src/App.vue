@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div >
+    
+    <div>
       <div class="icon">
         <div @click="goLogIn()" class="login" v-if="this.status == false">
           <img src="./assets/account.png">
@@ -28,10 +29,13 @@
         </div>
       </div>
     </div>
-    <div style='position: relative;'><router-view></router-view></div>
+   
+    <div style='position: relative;'>
+      <router-view></router-view>
+    </div>
     <div class="bottom">
       <div class="bottom-item1">
-          <!-- <div><img src="./assets/logo.png" style="width:15vw;height:15vh;align-self: flex-end;"></div> -->
+         
           <div>
             <div>與我們聯絡</div>
             <div>+886-0963-082-683</div>
@@ -39,9 +43,8 @@
           </div>
       </div>
       <div class="bottom-item2">© Copyright 2018 CHOU'. Site by CHOU.</div>
-      
-
     </div>
+ 
   </div>
 </template>
 
@@ -202,7 +205,13 @@ export default {
   font-family:"Helvetica Neue", Helvetica, "Lantinghei SC Extralight", "Microsoft JhengHei", "Lucida Grande", 微軟正黑體, Verdana, Arial,  sans-serif;
   font-weight: 300;
   color: #333333;
-  background-image: url(./assets/back.png)
+  background-image: url(./assets/back.png);
+  // height: 150vh;
+}
+.test{
+  display: flex;
+  flex-direction: column;
+  // outline: 100px solid orange;
 }
 .nav{
   font-size:40px;
@@ -260,11 +269,13 @@ export default {
   opacity: 0.4;
 }
 .bottom{
+  // outline:10px solid green;
   box-sizing: border-box;
   padding:50px;
+  // flex:3;
   position: absolute;
-  bottom: -40vh;
-  height:40vh;
+  bottom:-30vh;
+  height:30vh;
   width:100vw;
   // outline: 2px solid;
   display: flex;

@@ -4,7 +4,7 @@
       <swiper :options="swiperOption" ref="mySwiper" class="swiper">
         <!-- slides -->
         <swiper-slide  v-for="item in items" :key="item.key" class="box"> 
-            <img :src="item" style="width:100vw;height:100vh;display:block" >     
+            <img :src="item" style="width:100vw;display:block" >     
         </swiper-slide>
         <!-- Optional controls -->
         <!-- 小圓點-->
@@ -79,17 +79,7 @@ export default {
 
   },
   computed: {
-    imgHeight:function(e){
-    var winWid = wx.getSystemInfoSync().windowWidth; //获取当前屏幕的宽度
-    var imgh=e.detail.height;//图片高度
-    var imgw=e.detail.width;//图片宽度
-    var swiperH=winWid*imgh/imgw + "px"//等比设置swiper的高度。  即 屏幕宽度 / swiper高度 = 图片宽度 / 图片高度    ==》swiper高度 = 屏幕宽度 * 图片高度 / 图片宽度
-    this.setData({
-        Height:swiperH//设置高度
-        
-    })
-    return Height
-},
+
  
 
   
@@ -115,15 +105,15 @@ export default {
 <style lang="scss">
 .pictureArea{
   
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
 }
 .swiper-container {
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
 }
 .swiper-slide {
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
 }
 .nav-link{

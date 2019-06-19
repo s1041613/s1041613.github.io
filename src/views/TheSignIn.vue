@@ -63,8 +63,8 @@ export default {
       console.log('googleUser.getBasicProfile()',googleUser.getBasicProfile())
       vm.signinEmail = prof.getEmail()
       let name = prof.ig 
-      localStorage.setItem("signInEmail", vm.signinEmail) //localstroage remembers user is signed in
-      localStorage.setItem("name",name)
+      localStorage.setItem("signInEmail", JSON.stringify(vm.signinEmail))//localstroage remembers user is signed in
+      localStorage.setItem("name",JSON.stringify(name))
       this.$router.push({name:'TheHome' , params:{ status:true }})
     },
     googleOnSignInError(error) {
@@ -79,8 +79,8 @@ export default {
         console.log('res in graphAPI', response)
         let name = response.name
         let email = response.email
-        localStorage.setItem("name",name)
-        localStorage.setItem("signInEmail",email)
+        localStorage.setItem("name",JSON.stringify(name))
+        localStorage.setItem("signInEmail",JSON.stringify(email))
       })
     },
     fbLogIn(){

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import TheHome from './views/TheHome.vue'
-import test from './views/test.vue'
+
 import TheClothes from './views/TheClothes.vue'
 import TheClothesItem from './views/TheClothesItem.vue'
 
@@ -138,14 +138,6 @@ export default new Router({
       path: '/TheQA',
       name: 'TheQA',
       component: TheQA,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: test,
       meta: {
         showTitle: true,
       }

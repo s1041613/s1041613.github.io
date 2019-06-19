@@ -15,7 +15,7 @@
             </select>
             </div>
           </div>
-          <div class="itemArea-information-2" @click="saveItem($route.query.name,$route.query.money,$route.query.size,count)">
+          <div class="itemArea-information-2" @click="saveItem($route.query.id,$route.query.name,$route.query.money,$route.query.size,count)">
             <button>ADD</button>
           </div>
         </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 export default {
   components: {
@@ -36,28 +37,16 @@ export default {
     return {
       count:1,
       buyItem:[],
-
-   
     }
-
   },
   created() {
-    console.log('this.buyItem',this.buyItem)
+    // console.log('this.buyItem',this.buyItem)
 
   },
   watch: {
-    buyItem(val, oldval){
-      console.log('val',val)
-      console.log('oldval',oldval)
-      // if(oldval.length < 1){
-      //   this.buyItem = val
-      //   console.log('watch',this.buyItem)
-      // }
-      // if(val.length <1){
-      //   this.buyItem = oldval
-      // }
-      
-    }
+    // buyItem(){
+    //   this.buyItem = JSON.parse(localStorage.getItem('buy'))
+    // }
 
   },
   updated() {
@@ -72,22 +61,25 @@ export default {
   
   },
   methods: {
-    saveItem(name,money,size,count){
-      // let item={
-      //   "name":name,
-      //   "money":money,
-      //   "size":size,
-      //   "count":count
-      // }
-      // this.buyItem.push(item)
-      // item = {}
-      // console.log(this.buyItem)
-      firebase.database().ref('selectedItem/' + itemId).set({
-      name: name,
-      money: money,
-      size : size,
-      count:count
-    });
+    saveItem(id,name,money,size,count){
+      let item={
+        id:id,
+        name: name,
+        money: money,
+        size : size,
+        count:count
+      }
+      this.buyItem.push(item)
+      item ={}
+      if(!localStorage.hasOwnProperty('buy')){
+        localStorage.setItem('buy',JSON.stringify(this.buyItem))
+      }else{
+        let oldBuy = JSON.parse(localStorage.getItem('buy'))
+        for(let i in oldBuy){
+          this.buyItem.push(oldBuy[i])
+        }
+        localStorage.setItem('buy',JSON.stringify(this.buyItem))
+      }
       // axios.post('https://chopshop-79753.firebaseio.com/0618.json',this.buyItem)
       //   .then(response => {
       //     console.log('success msg', response)

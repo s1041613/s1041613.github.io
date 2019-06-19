@@ -1,60 +1,44 @@
 <template>
   <div>
-    <div v-for="item in fbArray" :key="item.id">
+    <div v-for="item in Demo" :key="item.id">
       <div>{{ item.type }}</div>
       <div>{{ item.id }}</div>
       <div>{{ item.title }}</div>
       <div>{{ item.price }}</div>
     </div>
-
-
-
-
   </div>
 </template>
 
 <script>
+import Vue from 'vue'
+import VueFire from 'vuefire'
+import firebase from 'firebase'
+// Vue.use(VueFire)
+const firebaseApp = firebase.initializeApp({ 
+    apiKey: "AIzaSyDkK4vA9QuWE1HGJn3DQbeD6Budn01-S6I",
+    authDomain: "chopshop-79753.firebaseapp.com",
+    databaseURL: "https://chopshop-79753.firebaseio.com",
+    projectId: "chopshop-79753",
+    storageBucket: "chopshop-79753.appspot.com",
+    messagingSenderId: "40275448473",
+    appId: "1:40275448473:web:d235598b6a6f324d"
+})
+const DB = firebaseApp.firestore()
 export default {
-  components: {
-
-  },
   data() {
     return {
-      firebase: {
-        fbArray: firebaseDb.ref('Demo/products').limitToLast(10), //bind as an array
-        fbObject: {
-          source: firebaseDb.ref('Demo/products/800afd3c-1615-49ba-b33d-497842af6c82'),
-          asObject: true, //Bind as object
-          cancelCallback: function () { },
-          readyCallback: function () { }
-      }
-  }
-
-   
+      Demo:[],
     }
-
+  },
+  firebase: {
+    Demo: DB.collection('Demo')
   },
   created() {
 
   },
-  watch: {
-
-  },
-  updated() {
-
-
-  },
   computed: {
-
-  
-
-  
-  
   },
   methods: {
-
-  },
-  mounted() {
 
   },
 }
