@@ -83,11 +83,18 @@ export default {
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     margin-top: 20%;
-    width:100%;
+    width:80%;
     img{
       //outline: 5px solid yellow;
-      width:50vw;
+      width:40vw;
       height:20vh;
+    } 
+  }
+  @media only screen and (max-width: 320px) {
+    margin-top: 20%;
+    img{
+      width:40vw;
+      height:18vh;
     } 
   }
 }
@@ -100,8 +107,12 @@ export default {
     height:25vh;
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
-      width:50vw;
+      width:40vw;
       height:20vh;
+  }
+  @media only screen and (max-width: 320px){
+      width:40vw;
+      height:18vh;
   }
 }
 .clothesArea-item:hover .modal-mask{

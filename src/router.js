@@ -6,8 +6,8 @@ import TheHome from './views/TheHome.vue'
 import TheClothes from './views/TheClothes.vue'
 import TheClothesItem from './views/TheClothesItem.vue'
 
-import TheBtttom from './views/TheBtttom.vue'
-import TheBtttomItem from './views/TheBtttomItem.vue'
+import TheBottom from './views/TheBottom.vue'
+import TheBottomItem from './views/TheBottomItem.vue'
 
 
 
@@ -53,17 +53,17 @@ export default new Router({
       },
     },
     {
-      path: '/TheBtttom',
-      name: 'TheBtttom',
-      component:TheBtttom,
+      path: '/TheBottom',
+      name: 'TheBottom',
+      component:TheBottom,
       meta: {
         showTitle: true,
       }
     },
     {
-      path: '/TheBtttom/btttomItem/:id',
-      name: 'TheBtttomItem',
-      component:TheBtttomItem ,
+      path: '/TheBottom/bottomItem/:id',
+      name: 'TheBottomItem',
+      component:TheBottomItem,
       meta: {
         showTitle: true,
       }

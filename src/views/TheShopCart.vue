@@ -4,10 +4,10 @@
     <div class="layout" v-show=" this.haveItem == 0">
       <div class="noItem">
         <div class="section1-item" style="margin-top:10%;line-height:60px;">
-          <div><i style="font-size:200px;opacity:0.5;" class="fas fa-shopping-cart"></i></div>
+          <div><i class="fas fa-shopping-cart img-shopcar"></i></div>
         </div>
-        <div style="margin-top:10%;">
-          <img @click="goHome()" src='../assets/gotoshop.png'>
+        <div style="margin-top:10%;width:15vw;text-align:right">
+          <img  class="img-shopcar" @click="goHome()" src='../assets/gotoshop.png'>
         </div>
       </div>
     </div>
@@ -47,8 +47,8 @@
           <div :total="total">小計金額:{{total}}</div>
         </div>
         <div class="section4">
-          <button @click="goHome()">我要繼續逛</button>
-          <button @click="next(2)">下一步</button>
+          <button class="shop-button" @click="goHome()">我要繼續逛</button>
+          <button class="shop-button" @click="next(2)">下一步</button>
         </div>
       </div>
     </div>
@@ -80,8 +80,8 @@
           </div>
         </div>
         <div class="section4">
-          <button @click="next(1)">上一步</button>
-          <button @click="next(3)">下一步</button>
+          <button class="shop-button" @click="next(1)">上一步</button>
+          <button class="shop-button" @click="next(3)">下一步</button>
         </div>
       </div>
     </div>
@@ -137,8 +137,8 @@
           </div>
         </div>
         <div class="section4">
-          <button @click="next(2)">上一步</button>
-          <button @click="goHome()">完成訂單</button>
+          <button class="shop-button" @click="next(2)">上一步</button>
+          <button class="shop-button" @click="goHome()">完成訂單</button>
         </div>
       </div>
     </div>
@@ -157,8 +157,8 @@ export default {
       haveItem:0,
       email:"",
       name:'',
-      phone:'vf',
-      adress:'vf',
+      phone:'',
+      adress:'',
     }
 
   },
@@ -192,7 +192,9 @@ export default {
     checkLogin() {
       if(localStorage.hasOwnProperty('signinStatus')){
         this.name = localStorage.getItem('name')
+        this.name = this.name.substring(1, (this.name.length) -1)
         this.email = localStorage.getItem('signInEmail')
+        this.email = this.email.substring(1, (this.email.length) -1)
       }
     },
     a(){
@@ -271,38 +273,32 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 .layout{
   width: 100vw;
-  // display: flex;
   height: 100vh;
-  button{
-    background:#bdc3c7;
-    color: #ecf0f1;
-    // width:100px;
-  }
-  button:hover{
+}
+.shop-button{
     background:#2c3e50;
+    color: #ecf0f1;
+}
+.shop-button:hover{
+  background:#bdc3c7;
 
-  }
 }
 .haveItem{
   //outline: 2px solid;
   position: absolute;
-  top:20%;
+  top:15%;
   //outline: 2px solid;
   margin-top: 0%;
   display: flex;
   flex-direction:column;
   @media only screen and (max-width: 768px) {
-
       width:100vw;
-
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
- 
       width:100vw;
- 
   }
 }
 .section1{
@@ -315,13 +311,11 @@ export default {
     flex:3;
     margin-right: 1%;
     background-color:rgba(211,211,211,0.5)
-    // background-color:rgba(255,128,153,0.3) 
   }
   @media only screen and (max-width: 768px) {
-
       width:100vw;
-
   }
+  
 }
 .section2{
   //outline: 5px solid pink;
@@ -356,7 +350,6 @@ export default {
   }
 }
 .section5{
-  outline: 5px solid red;
   width:80vw;
   margin-bottom: 3%;
   background-color:rgb(255, 255, 255,0.5);
@@ -389,14 +382,26 @@ export default {
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  // outline: 2px solid;
   img{
-    width:10vw;
-    padding-left:25%;
+    width:12vw;
   }
-  // div{
-  //   outline: 2px solid;
-  // }
-
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    img{
+      width:20vw;
+    }
+  }
+}
+.img-shopcar{
+  font-size:200px;
+  opacity:0.5;
+  @media only screen and (max-width: 768px) {
+    font-size:180px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    font-size:150px;
+  }
+  @media only screen and (max-width: 320px) {
+    font-size:100px;
+  }
 }
 </style>

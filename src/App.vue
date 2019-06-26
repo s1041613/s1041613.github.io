@@ -20,13 +20,13 @@
           </div> 
           <div class="nav-right-icon">
             <div @click="goLogIn()" class="login" v-if="this.status == false">
-              <img src="./assets/account.png">
+              <img class="nav-right-icon-img" src="./assets/account.png">
             </div>
             <div @click="goShopCart()">
-              <img src="./assets/shopcart.png" />
+              <img class="nav-right-icon-img" src="./assets/shopcart.png" />
             </div>
             <div @click="logOut()" v-if="this.status == true">
-              <img src="./assets/logout.png">
+              <img class="img-logout" src="./assets/logout.png">
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ export default {
 
     },
     goTheButtom(){
-      this.$router.push('/TheBtttom')
+      this.$router.push('/TheBottom')
     },
     goTheVacation(){
       this.$router.push('/TheVacation')
@@ -220,25 +220,21 @@ export default {
   z-index: 100;
   display: flex;
   justify-content: space-between;
-  img{
-    width:4vw;
-  }
   img:hover{
     opacity: 0.5;
-  }
-  @media only screen and (max-width: 768px) {
-    img{
-      width:6vw;
-    }
-  }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    img{
-      width:8vw;
-    }
   }
 }
 .nav-left-icon{
   font-size:35px;
+  @media only screen and (max-width: 768px) {
+    font-size:30px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    font-size:25px;
+  }
+  @media only screen and (max-width: 375px){
+    font-size:20px;
+  }
 }
 .nav-left-icon:hover{
   opacity: 0.5;
@@ -264,20 +260,47 @@ export default {
 .nav-right-icon{
   display: flex;
 }
+.nav-right-icon-img{
+  width:4vw;
+  @media only screen and (max-width: 768px) {
+      width:6vw;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+      width:8vw;
+  }
+}
+.img-logout{
+    width:3vw;
+    margin-top:4.5px; 
+
+  @media only screen and (max-width: 768px) {
+    width:4.5vw;
+    margin-top:4px; 
+  }
+  @media only screen and (max-width: 425px){
+    width:5.5vw;
+    margin-top:4px; 
+  }
+  @media only screen and (max-width: 375px) {
+    width:6vw;
+    margin-top:0px; 
+  }
+
+}
 .nav-sidebar{
   position: absolute;
   z-index:-1;
-  top:-90%;
+  top:-100%;
   left:-2%;
   box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
   width:100vw;
-  height: 150vh;
+  height: 180vh;
   display: flex;
   flex-direction: column;
   padding:35px;
   line-height: 40px;
   overflow: hidden;
-  background-image: url(./assets/menu.jpeg);
+  background-image: url(./assets/menu.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   h1{
@@ -309,11 +332,19 @@ export default {
   align-items: center;
   line-height: 30px;
   div{
-    font-size:15px;
+    font-size:18px;
+    line-height: 30px;
   }
-  @media only screen and (min-width: 320px){
-    line-height: 20px; 
-    font-size: 10px;
+  @media only screen and (max-width: 375px){
+    div{
+      font-size: 15px;
+      line-height: 30px;
+    } 
+  }
+  @media only screen and (max-width: 320px){
+    div{
+      font-size: 12px;
+    } 
   }
 }
 
