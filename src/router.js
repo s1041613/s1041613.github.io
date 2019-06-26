@@ -2,20 +2,18 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import TheHome from './views/TheHome.vue'
 
+
 import TheClothes from './views/TheClothes.vue'
 import TheClothesItem from './views/TheClothesItem.vue'
 
 import TheBtttom from './views/TheBtttom.vue'
 import TheBtttomItem from './views/TheBtttomItem.vue'
 
-import TheOldSchool from './views/TheOldSchool.vue'
-import TheOldSchoolItem from './views/TheOldSchoolItem.vue'
 
-import TheEasy from './views/TheEasy.vue'
-import TheEasyItem from './views/TheEasyItem.vue'
+
+import TheVacation from './views/TheVacation.vue'
 
 import TheDaning from './views/TheDaning.vue'
-import TheDaningItem from './views/TheDaningItem.vue'
 
 import TheQA from './views/TheQA.vue'
 import TheShopCart from './views/TheShopCart.vue'
@@ -71,33 +69,9 @@ export default new Router({
       }
     },
     {
-      path: '/TheOldSchool',
-      name: 'TheOldSchool',
-      component:TheOldSchool,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheOldSchool/oldSchoolItem/:id',
-      name: 'TheOldSchoolItem',
-      component:TheOldSchoolItem,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheEasy',
-      name: 'TheEasy',
-      component:TheEasy,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheEasy/easyItem/:id',
-      name: 'TheEasyItem',
-      component:TheEasyItem,
+      path: '/TheVacation',
+      name: 'TheVacationItem',
+      component:TheVacation,
       meta: {
         showTitle: true,
       }
@@ -106,14 +80,6 @@ export default new Router({
       path: '/TheDaning',
       name: 'TheDaning',
       component:TheDaning,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheDaning/daningItem/:id',
-      name: 'TheDaningItem',
-      component:TheDaningItem,
       meta: {
         showTitle: true,
       }

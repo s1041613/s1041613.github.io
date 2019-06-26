@@ -97,24 +97,35 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .layout{
   display: flex;
-  // outline: 10px solid;
   justify-content: center;
   align-content: center;
 }
-
 .itemArea{
   box-sizing: border-box;
   margin-top: 5%;
-  width:70vw;
-  // outline: 2px solid;
+  width:90vw;
   display: flex;
   img{
-    width:45vw;
+    width:50vw;
     height:70vh;
-    // outline: 2px solid;
+  }
+  @media only screen and (max-width: 768px) {
+    img{
+      width:50vw;
+      height:50vh;
+    }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    margin-top: 35%;
+    flex-direction: column;
+    width:100vw;
+    img{
+      width:100vw;
+      height: 50vh;
+    }
   }
 }
 .itemArea-information{
@@ -141,10 +152,26 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  // outline: 2px solid;
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    margin-top: 5%;
+    img{
+      width:100vw;
+      height: 40vh;
+    }
+  }
+  button{
+    background:#95a5a6;
+    color: #ecf0f1;
+    // width:100px;
+  }
+  button:hover{
+    background:#2c3e50;
+
+  }
 }
 .select-css{
   width:100px;
-  
+
+
 }
 </style>

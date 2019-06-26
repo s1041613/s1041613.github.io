@@ -1,51 +1,50 @@
 <template>
   <div id="app">
-    
-    <div>
-      <div class="icon">
-        <div @click="goLogIn()" class="login" v-if="this.status == false">
-          <img src="./assets/account.png">
-        </div>
-        <div @click="goShopCart()">
-          <img src="./assets/shopcart.png" />
-        </div>
-        <div @click="logOut()" v-if="this.status == true">
-          <img src="./assets/logout.png">
-        </div>
-      </div>
-      <div v-if="this.$route.meta.showTitle == true" @click="goHome()" class="title">
-        <img src="./assets/logo.png">
-      </div> 
-       <!-- background-color:rgba(	255,128,153,0.4); -->
-      <div  @click="openNav()"><i class="fas fa-align-justify nav"></i></div>
-      <div v-if="this.open == true" style="position:absolute;z-index:10;top:15%;left:2%;">
-        <div @click="goTheClothes()" class="navText" >上衣</div>
-        <div @click="goTheButtom()" class="navText">褲子</div>
-        <div @click="openNav2()" class="navText">風格</div>
-        <div v-if="this.open2 == true">
-          <div @click="goTheOldSchool()" class="navText2">復古</div>
-          <div @click="goTheEasy()" class="navText2">簡約</div>
-          <div @click="goTheDaning()" class="navText2">丹寧</div>
-        </div>
-      </div>
-    </div>
-   
-    <div style='position: relative;'>
-      <router-view></router-view>
-    </div>
-    <div class="bottom">
-      <div class="bottom-item1">
-         
-          <div>
-            <div>與我們聯絡</div>
-            <div>+886-0963-082-683</div>
-            <div>y10135124@gmail.com</div>
+    <section style="position:relative">
+      <div><router-view></router-view></div>
+      <nav>
+        <div class="nav">
+          <div @click="openNav()"><i class="fas fa-align-justify nav-left-icon"></i></div>
+          <div class="nav-sidebar" v-show="this.open == true">
+            <div class="nav-sidebar-text">
+              <h1>BASE</h1>
+              <h3 @click="goTheClothes()">TOP</h3>
+              <h3 @click="goTheButtom()">BOTTOM</h3>
+              <h1>OOTD</h1>
+              <h3 @click="goTheVacation()">VACATION</h3>
+              <h3 @click="goTheDaning()">DANING</h3>
+            </div>
           </div>
+          <div @click="goHome()" v-show="this.$route.meta.showTitle == true" class="nav-title-img">
+            <img src="./assets/logo.png">
+          </div> 
+          <div class="nav-right-icon">
+            <div @click="goLogIn()" class="login" v-if="this.status == false">
+              <img src="./assets/account.png">
+            </div>
+            <div @click="goShopCart()">
+              <img src="./assets/shopcart.png" />
+            </div>
+            <div @click="logOut()" v-if="this.status == true">
+              <img src="./assets/logout.png">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <footer>
+      <div class="footer">
+        <div style="margin-bottom:10px;">
+          <div>與我們聯絡</div>
+          <div>+886-0963-082-683</div>
+          <div>y10135124@gmail.com</div>
+        </div>
+        <div style="text-transform: uppercase;">© Copyright 2018 CHOU'. Site by CHOU.</div>
       </div>
-      <div class="bottom-item2">© Copyright 2018 CHOU'. Site by CHOU.</div>
-    </div>
- 
+    </footer> 
+    <div>
   </div>
+</div>
 </template>
 
 <script>
@@ -118,11 +117,8 @@ export default {
     goTheButtom(){
       this.$router.push('/TheBtttom')
     },
-    goTheOldSchool(){
-      this.$router.push('/TheOldSchool')
-    },
-    goTheEasy(){
-      this.$router.push('/TheEasy')
+    goTheVacation(){
+      this.$router.push('/TheVacation')
     },
     goTheDaning(){
       this.$router.push('/TheDaning')
@@ -206,105 +202,119 @@ export default {
   font-weight: 300;
   color: #333333;
   background-image: url(./assets/back.png);
+  background-repeat: repeat;
+  background-size: cover;
   // height: 150vh;
+
 }
-.test{
-  display: flex;
-  flex-direction: column;
-  // outline: 100px solid orange;
+*{
+  box-sizing: border-box;
 }
 .nav{
-  font-size:40px;
-  position:absolute;
-  z-index:10;
-  top:5%;
-  left:3%
-}
-.nav:hover{
-  opacity: 0.4;
-  
-}
-.icon{
-  width:150px;
-  position:absolute;
-  z-index:10;
-  top:5%;
-  right: 5%;
-  display: flex;
-  justify-content:space-between;
-  img{
-    width:4vw;
-    height:6vh;
-  }
-  img:hover{
-  opacity: 0.4;
-  }
-}
-.title{
-
-  position:absolute;
-  z-index:10;
-  top:8%;
-  transform:translate(-50%, -50%);
-  left: 50%;
-  img{
-    width:25vw;
-    height:15vh;
-  }
-  img:hover{
-    opacity: 0.4;
-  }
-}
-.navText{
-  font-size: 35px;
-  
-}
-.navText:hover{
-  opacity: 0.4;
-}
-.navText2{
-  font-size: 25px;
-}
-.navText2:hover{
-  opacity: 0.4;
-}
-.bottom{
-  // outline:10px solid green;
-  box-sizing: border-box;
-  padding:50px;
-  // flex:3;
+  width:96vw;
+  margin: 0 auto;
   position: absolute;
-  bottom:-30vh;
-  height:30vh;
-  width:100vw;
-  // outline: 2px solid;
-  display: flex;
-  flex-direction: column;
-  justify-content:center;
-  align-items: center;
-  background-color:rgba(255,128,153,0.2) 
-
-}
-.bottom-item1{
-  box-sizing: border-box;
-  // div{
-  //   outline: 2px solid;
-  // }
-  // width:50vw;
+  top:5%;
+  left:2%;
+  right:2%;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
-  
-  
-
+  img{
+    width:4vw;
+  }
+  img:hover{
+    opacity: 0.5;
+  }
+  @media only screen and (max-width: 768px) {
+    img{
+      width:6vw;
+    }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    img{
+      width:8vw;
+    }
+  }
 }
-// .bottom-item1-1{
-//   display: flex;
-//   justify-content: space-between;
-//   width:8vw;
-// }
-.bottom-item2{
-  // outline: 2px solid;
-  align-self: center;
-
+.nav-left-icon{
+  font-size:35px;
 }
+.nav-left-icon:hover{
+  opacity: 0.5;
+}
+
+.nav-title-img{
+  margin-top: -2%;
+  padding-left: 5%;
+  img{
+  width:25vw;
+  }
+  @media only screen and (max-width: 768px) {
+    img{
+      width:30vw;
+    }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    img{
+      width:40vw;
+    }
+  }
+}
+.nav-right-icon{
+  display: flex;
+}
+.nav-sidebar{
+  position: absolute;
+  z-index:-1;
+  top:-90%;
+  left:-2%;
+  box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
+  width:100vw;
+  height: 150vh;
+  display: flex;
+  flex-direction: column;
+  padding:35px;
+  line-height: 40px;
+  overflow: hidden;
+  background-image: url(./assets/menu.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  h1{
+    font-weight: 500;
+    margin-bottom: 30px;
+    margin-top: 70px;
+    font-weight: 300;
+  }
+}
+.nav-sidebar-text{
+  position: absolute;
+  left:10%;
+  top:5%;
+  h1:hover{
+    opacity: 0.5;
+  }
+  h3:hover{
+    opacity: 0.5;
+  }
+}
+
+
+.footer{
+  display: flex;
+  padding: 20px;
+  background-color: pink;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 30px;
+  div{
+    font-size:15px;
+  }
+  @media only screen and (min-width: 320px){
+    line-height: 20px; 
+    font-size: 10px;
+  }
+}
+
 </style>

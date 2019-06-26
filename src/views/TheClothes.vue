@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="layout">
+    <section class="layout">
       <div class="clothesArea">
         <div v-for="i in theClothesItem" :key="i.key">
           <div class="clothesArea-item" @click="go(i.component_name,i.id,i.img,i.name,i.money,i.size)">
@@ -16,12 +16,12 @@
           </div>
         </div>
       </div>
-    </div>
+  </section>
   </div>
 </template>
 
 <script>
-import theClothesItem from "../json/TheClothes-item.json"
+import theClothesItem from "../json/top.json"
 export default {
   components: {
   },
@@ -58,27 +58,51 @@ export default {
 
 <style lang="scss">
 .layout{
-  // height:100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width:100vw;
 }
 .clothesArea{
+  //outline: 5px solid red;
   width:80vw;
-  height:60vh;
   display: flex;
   flex-wrap:wrap;
+  margin-top: 8%;
   img{
+    //outline: 5px solid pink;
     width:20vw;
-    height:40vh;
-    position: absolute;
+    height:35vh;
+    opacity: 1;
+  }
+  @media only screen and (max-width: 768px) {
+    margin-top: 15%;
+    width:90vw;
+    img{
+      //outline: 5px solid orange;
+      width:30vw;
+      height:25vh;
+    } 
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    margin-top: 20%;
+    width:100%;
+    img{
+      //outline: 5px solid yellow;
+      width:50vw;
+      height:20vh;
+    } 
   }
 }
 .clothesArea-item{
-  // outline:2px solid red;
   position: relative;
   width:20vw;
-  height:40vh;
+  height:35vh;
+  @media only screen and (max-width: 768px) {
+    width:30vw;
+    height:25vh;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+      width:50vw;
+      height:20vh;
+  }
 }
 .clothesArea-item:hover .modal-mask{
    display: block;
@@ -97,12 +121,14 @@ export default {
   transform: translate(-50%, -50%);
 }
 .itemImformation{
+  //outline: 10px solid;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width:20vw;
   font-size: 20px;
+  color: #2c3e50;
 }
 .modal-mask {
 display:none;

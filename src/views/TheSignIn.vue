@@ -1,19 +1,18 @@
 <template>
   <div>
     <div class="layout">
-      <div class="border">
+      <div class="signin-box">
         <div class="child">
-          <div style="font-size:60px;">SIGN IN</div>
-          <div style="line-height:80px;">
+          <div>SIGN IN</div>
+          <div style="line-height:90px;">
             <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
             <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
           </div>
+        </div>
       </div>
 
+
     </div>
-
-
-  </div>
   </div>
 </template>
 
@@ -123,26 +122,18 @@ export default {
 
 <style lang="scss">
 //varible
-$font:serif;
 
 %all-need{
   display:flex;
-  font-family:$font;
-  // box-sizing:border-box;
-
 }
 .layout{
-
   @extend %all-need;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  // overflow: hidden;
-  // background-image: url(../assets/back.png)
 }
-.border{
-  // outline: 2px solid;
-  // background-color:rgba(255,128,153,0.1) ;
+.signin-box{
+  outline: 2px solid #bdc3c7;
+  box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.05);
   @extend %all-need;
   padding: 50px;
   width: 40vw;
@@ -150,14 +141,27 @@ $font:serif;
   flex-direction:column;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: 768px) {
+    width: 70vw;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width: 90vw;
+    height:50vh;
+    margin-top: -15%;
+  }
 }
 .child{
+  //outline: 2px solid red;
   @extend %all-need;
   flex-direction:column;
   align-items: center;
-  // line-height: 50px;
-  
-
+  line-height: 50px;
+  font-size:50px;
+  @media only screen and (max-width: 375px){
+    div{
+      font-size: 40px;
+    }
+  }
 }
 
 /* Shared */
@@ -189,7 +193,7 @@ $font:serif;
   outline: none;
 }
 .loginBtn:active {
-  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.5);
 }
 
 

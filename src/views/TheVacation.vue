@@ -2,8 +2,8 @@
   <div>
     <div class="layout">
       <div class="clothesArea">
-        <div v-for="i in theClothesItem" :key="i.key">
-          <div class="clothesArea-item" @click="go(i.component_name,i.id,i.img,i.name,i.money,i.size)">
+        <div v-for="i in theClothesItem" :key="i.key" @click="go(i.component_name,i.id,i.img,i.name,i.money,i.size)">
+          <div class="clothesArea-item" >
               <img :src="i.img" class='p'> 
               <div class="modal-mask">
                 <div class="show">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import theClothesItem from "../json/daning.json"
+import theClothesItem from "../json/vacation.json"
 export default {
   components: {
   },

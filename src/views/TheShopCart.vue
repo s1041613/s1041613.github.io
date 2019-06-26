@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 購物車沒有東西時 -->
     <div class="layout" v-show=" this.haveItem == 0">
       <div class="noItem">
         <div class="section1-item" style="margin-top:10%;line-height:60px;">
@@ -10,10 +11,11 @@
         </div>
       </div>
     </div>
+    <!-- 購物車第一頁 -->
     <div class="layout" v-show="this.haveItem == 1">
       <div class="haveItem" >
         <div class="section1">
-          <div style="background-color:rgba(255,128,153,0.3)">STEP.1確認購物清單</div>
+          <div style="background-color:rgba(255,128,153,0.3)">STEP.1確認清單</div>
           <div>STEP.2填寫資料</div>
           <div>STEP.3確認訂單</div>
         </div>
@@ -21,9 +23,9 @@
           <table class="table my-table-css" >
             <thead>
               <tr>
-                <th scope="col">商品編號</th>
-                <th scope="col">商品資料</th>
-                <th scope="col">單品價格</th>
+                <th scope="col">編號</th>
+                <th scope="col">品名</th>
+                <th scope="col">價格</th>
                 <th scope="col">數量</th>
                 <th scope="col">小計</th>
                 <th scope="col"><i class="fas fa-trash-alt"></i></th>
@@ -51,11 +53,11 @@
       </div>
     </div>
 
-
+    <!-- 購物車第二頁 -->
     <div class="layout" v-show="this.haveItem == 2">
       <div class="haveItem" :checkLogin="checkLogin">
         <div class="section1">
-          <div>STEP.1確認購物清單</div>
+          <div>STEP.1確認清單</div>
           <div style="background-color:rgba(255,128,153,0.3) ">STEP.2填寫資料</div>
           <div>STEP.3確認訂單</div>
         </div>
@@ -84,10 +86,11 @@
       </div>
     </div>
 
+    <!-- 購物車第三頁 -->
     <div class="layout" v-show="this.haveItem == 3">
       <div class="haveItem" >
         <div class="section1">
-          <div>STEP.1確認購物清單</div>
+          <div>STEP.1確認清單</div>
           <div>STEP.2填寫資料</div>
           <div  style="background-color:rgba(255,128,153,0.3) ">STEP.3確認訂單</div>
         </div>
@@ -269,20 +272,41 @@ export default {
 </script>
 
 <style lang="scss">
-// .layout{
-// }
+.layout{
+  width: 100vw;
+  // display: flex;
+  height: 100vh;
+  button{
+    background:#bdc3c7;
+    color: #ecf0f1;
+    // width:100px;
+  }
+  button:hover{
+    background:#2c3e50;
+
+  }
+}
 .haveItem{
-  // outline: 2px solid;
-  margin-top: 10%;
+  //outline: 2px solid;
+  position: absolute;
+  top:20%;
+  //outline: 2px solid;
+  margin-top: 0%;
   display: flex;
   flex-direction:column;
-  // justify-content:center;
-  // align-items:center;
-  // line-height:40px;
-  // height:70vh;
-  // overflow: hidden;
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+ 
+      width:100vw;
+ 
+  }
 }
 .section1{
+  //outline: 5px solid red;
   width:80vw;
   display: flex;
   margin-bottom: 3%;
@@ -293,29 +317,56 @@ export default {
     background-color:rgba(211,211,211,0.5)
     // background-color:rgba(255,128,153,0.3) 
   }
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
 }
 .section2{
+  //outline: 5px solid pink;
   width:80vw;
   background-color:rgb(255, 255, 255,0.7);
-  // border: 2px;
-  //background-color:rgba(	211,211,211,0.5)
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
 }
 .section3{
+  //outline: 5px solid orange;
   width:80vw;
   text-align:center;
   font-size: 20px;
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
 }
 .section4{
+  //outline: 5px solid yellow;
   width:80vw;
   justify-content:space-between;
   display: flex;
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
 }
 .section5{
+  outline: 5px solid red;
   width:80vw;
   margin-bottom: 3%;
   background-color:rgb(255, 255, 255,0.5);
   display: flex;
   flex-direction: column;
+  @media only screen and (max-width: 768px) {
+
+      width:100vw;
+
+  }
 }
 .section5-item{
   display: flex;
@@ -323,6 +374,7 @@ export default {
     margin-left: 10%;
     width:70vw;
     height:5vh;
+    // border:2px solid #95a5a6;
   }
   label{
     margin-left: 10%;
@@ -340,7 +392,11 @@ export default {
   // outline: 2px solid;
   img{
     width:10vw;
+    padding-left:25%;
   }
+  // div{
+  //   outline: 2px solid;
+  // }
 
 }
 </style>
