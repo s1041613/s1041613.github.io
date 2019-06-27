@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import theClothesItem from "../json/top.json"
 export default {
   components: {
   },
@@ -139,6 +138,7 @@ export default {
   flex-direction: column;
   width:20vw;
   font-size: 20px;
+  font-weight: 300;
   color: #2c3e50;
 }
 .modal-mask {

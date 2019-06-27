@@ -1,24 +1,33 @@
 <template>
   <div id="app">
-    <section style="position:relative">
+    <section style="position:relative;outline:10px solid;">
       <div><router-view></router-view></div>
       <nav>
         <div class="nav">
-          <div @click="openNav()"><i class="fas fa-align-justify nav-left-icon"></i></div>
+          <div>
+            <button @click="goHome()" class="nav-button">HOME</button>
+            <button @click="goTheButtom()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
+          </div>
+          <!-- <div @click="openNav()"><i class="fas fa-align-justify nav-left-icon"></i></div> 
           <div class="nav-sidebar" v-show="this.open == true">
             <div class="nav-sidebar-text">
               <h1>BASE</h1>
-              <h3 @click="goTheClothes()">TOP</h3>
-              <h3 @click="goTheButtom()">BOTTOM</h3>
+              <h3 @click="goTheClothes()">breakfast</h3>
+              <h3 @click="goTheButtom()">lunch</h3>
+              <h3 @click="goTheButtom()">dinner</h3>
               <h1>OOTD</h1>
               <h3 @click="goTheVacation()">VACATION</h3>
               <h3 @click="goTheDaning()">DANING</h3>
             </div>
-          </div>
-          <div @click="goHome()" v-show="this.$route.meta.showTitle == true" class="nav-title-img">
+          </div> -->
+          <div @click="goHome()" class="nav-title-img">
             <img src="./assets/logo.png">
           </div> 
           <div class="nav-right-icon">
+            <button @click="goLogIn()" class="nav-button">LOG IN</button>
+            <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
+          </div>
+          <!-- <div class="nav-right-icon">
             <div @click="goLogIn()" class="login" v-if="this.status == false">
               <img class="nav-right-icon-img" src="./assets/account.png">
             </div>
@@ -28,16 +37,16 @@
             <div @click="logOut()" v-if="this.status == true">
               <img class="img-logout" src="./assets/logout.png">
             </div>
-          </div>
+          </div> -->
         </div>
       </nav>
     </section>
     <footer>
       <div class="footer">
-        <div style="margin-bottom:10px;">
-          <div>與我們聯絡</div>
-          <div>+886-0963-082-683</div>
-          <div>y10135124@gmail.com</div>
+        <div style="margin-bottom:20px;">
+          <h2>Contact Us</h2>
+          <div><i class="fas fa-phone"></i>  +886-0963-082-683</div>
+          <div><i class="fas fa-envelope"></i>  y10135124@gmail.com</div>
         </div>
         <div style="text-transform: uppercase;">© Copyright 2018 CHOU'. Site by CHOU.</div>
       </div>
@@ -201,11 +210,9 @@ export default {
   font-family:"Helvetica Neue", Helvetica, "Lantinghei SC Extralight", "Microsoft JhengHei", "Lucida Grande", 微軟正黑體, Verdana, Arial,  sans-serif;
   font-weight: 300;
   color: #333333;
-  background-image: url(./assets/back.png);
-  background-repeat: repeat;
-  background-size: cover;
-  // height: 150vh;
-
+}
+section{
+  margin:0px;
 }
 *{
   box-sizing: border-box;
@@ -214,37 +221,45 @@ export default {
   width:96vw;
   margin: 0 auto;
   position: absolute;
-  top:5%;
+  top:3%;
   left:2%;
   right:2%;
-  z-index: 100;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
-  img:hover{
-    opacity: 0.5;
-  }
 }
-.nav-left-icon{
-  font-size:35px;
-  @media only screen and (max-width: 768px) {
-    font-size:30px;
-  }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    font-size:25px;
-  }
-  @media only screen and (max-width: 375px){
-    font-size:20px;
-  }
+.nav-button{
+  width:10vw;
+  height:6vh;
+  border-radius:30px;
+  border:2px solid #fff;
+  font-weight:500;
+  background-color:rgb(127, 140, 141,0.5);
+  color: #fff;
+  margin-right:30px;
+  // @media only screen and (max-width: 768px) {
+  //   font-size:30px;
+  // }
+  // @media only screen and (min-width: 320px) and (max-width: 425px) {
+  //   font-size:25px;
+  // }
+  // @media only screen and (max-width: 375px){
+  //   font-size:20px;
+  // }
 }
-.nav-left-icon:hover{
-  opacity: 0.5;
-}
+.nav-button:hover{
+  background-color:#fff;
+  color: rgb(231, 76, 60);
 
+}
 .nav-title-img{
   margin-top: -2%;
   padding-left: 5%;
   img{
   width:25vw;
+  }
+  img:hover{
+    opacity: 0.5;
   }
   @media only screen and (max-width: 768px) {
     img{
@@ -269,44 +284,30 @@ export default {
       width:8vw;
   }
 }
-.img-logout{
-    width:3vw;
-    margin-top:4.5px; 
 
-  @media only screen and (max-width: 768px) {
-    width:4.5vw;
-    margin-top:4px; 
-  }
-  @media only screen and (max-width: 425px){
-    width:5.5vw;
-    margin-top:4px; 
-  }
-  @media only screen and (max-width: 375px) {
-    width:6vw;
-    margin-top:0px; 
-  }
-
-}
 .nav-sidebar{
   position: absolute;
-  z-index:-1;
+  z-index: -100;
   top:-100%;
   left:-2%;
   box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
   width:100vw;
-  height: 180vh;
+  height: 150vh;
   display: flex;
   flex-direction: column;
   padding:35px;
   line-height: 40px;
   overflow: hidden;
-  background-image: url(./assets/menu.jpg);
+  // background-image: url(./assets/home/nav.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   h1{
     font-weight: 500;
     margin-bottom: 30px;
     margin-top: 70px;
+    font-weight: 400;
+  }
+  h3{
     font-weight: 300;
   }
 }
@@ -314,9 +315,6 @@ export default {
   position: absolute;
   left:10%;
   top:5%;
-  h1:hover{
-    opacity: 0.5;
-  }
   h3:hover{
     opacity: 0.5;
   }
@@ -324,13 +322,19 @@ export default {
 
 
 .footer{
+  position: absolute;
+  // bottom:-40%;
+  width:100vw ;
   display: flex;
   padding: 20px;
-  background-color: pink;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   line-height: 30px;
+  background: url(./assets/home/footer.jpg);
+  background-size: cover;
+  height:40vh;
+  font-weight: 400;
   div{
     font-size:18px;
     line-height: 30px;

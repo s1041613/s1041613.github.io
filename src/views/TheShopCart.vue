@@ -1,5 +1,7 @@
 <template>
-  <div>
+<div>
+  <section class="head-img"></section>
+  <section class="background-img">
     <!-- 購物車沒有東西時 -->
     <div class="layout" v-show=" this.haveItem == 0">
       <div class="noItem">
@@ -142,7 +144,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
+</div>
 </template>
 
 <script>
@@ -274,6 +277,11 @@ export default {
 </script>
 
 <style lang="scss" >
+// .background-img{
+//   background:url(../assets/home/2.jpg);
+//   background-size:cover;
+
+// }
 .layout{
   width: 100vw;
   height: 100vh;

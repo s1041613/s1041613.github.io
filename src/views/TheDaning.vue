@@ -1,33 +1,60 @@
 <template>
   <div>
-    <div class="layout">
-      <div class="clothesArea">
-        <div v-for="i in theClothesItem" :key="i.key">
-          <div class="clothesArea-item" @click="go(i.component_name,i.id,i.img,i.name,i.money,i.size)">
-              <img :src="i.img" class='p'> 
-              <div class="modal-mask">
-                <div class="show">
-                  <div class="itemImformation">
-                    <div>{{i.name}}</div>
-                    <div>{{i.money}}</div>
-                  </div>
-                </div>
-              </div>       
+    <section class="head-img"></section>
+    <section>
+      <div class="breakfast">
+        <h1>Breakfast Menu List</h1>
+        <div class="breakfast-food">
+          <div id="breakfast-food-1">
+            <img class="breakfast-img" src="../assets/breakfast/1.jpg">
+            <div class="breakfast-information" v-for="i in breakfast[0]" :key="i.key">
+              <div>
+                <span>{{i.name}}</span>
+                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+              </div>
+              <p>{{i.describe}}</p>
+            </div>
+          </div>
+          <div d="breakfast-food-2">
+            <img class="breakfast-img" src="../assets/breakfast/2.jpg">
+            <div class="breakfast-information" v-for="i in breakfast[1]" :key="i.key">
+              <div>
+                <span>{{i.name}}</span>
+                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+              </div>
+              <p>{{i.describe}}</p>
+            </div>
+          </div>
+          <div d="breakfast-food-3">
+            <img style="margin-right:0px;" class="breakfast-img" src="../assets/breakfast/3.jpg">
+            <div class="breakfast-information" v-for="i in breakfast[2]" :key="i.key">
+              <div>
+                <span>{{i.name}}</span>
+                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+              </div>
+              <p>{{i.describe}}</p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
+    <div id="hint-box" class="hint-box-show">
+      <div class="hint-box">
+        <div>successful <i style="font-size:20px;" class="fas fa-check"></i> </div>
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
-import theClothesItem from "../json/daning.json"
+import breakfast from '../json/breakfast.json'
 export default {
   components: {
   },
   data() {
     return {
-      theClothesItem,
+      breakfast,
     }
   },
   created() {
@@ -48,6 +75,13 @@ export default {
       console.log(id)
       this.$router.push({name:cname,query: { id:id ,img:img,name:name,money:money,size:size}})
     },
+    add(){
+      document.getElementById('hint-box').style.display="block"
+      var t=setTimeout(function(){
+        document.getElementById('hint-box').style.display="none"
+        },1500);
+
+    },
 
   },
   mounted() {
@@ -57,65 +91,82 @@ export default {
 </script>
 
 <style lang="scss">
-// .layout{
-//   // height:100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .clothesArea{
-//   width:80vw;
-//   height:60vh;
-//   display: flex;
-//   flex-wrap:wrap;
-//   img{
-//     width:20vw;
-//     height:40vh;
-//     position: absolute;
-//   }
-// }
-// .clothesArea-item{
-//   // outline:2px solid red;
-//   position: relative;
-//   width:20vw;
-//   height:40vh;
-// }
-// .clothesArea-item:hover .modal-mask{
-//    display: block;
-// }
-// .clothesArea-item:hover .p{
-//    opacity: 0.4;
-// }
-// .clothesArea-item:hover .show{
-//    display: block;
-// }
-// .show{
-//   display: none;
-//   position: absolute;
-//   top:50%;
-//   left:50%;
-//   transform: translate(-50%, -50%);
-// }
-// .itemImformation{
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   flex-direction: column;
-//   width:20vw;
-//   font-size: 20px;
-//   opacity: 0.8;
-// }
-// .modal-mask {
-// display:none;
-// position: absolute;
-// z-index: 15;
-// top: 50%;
-// left: 50%;
-// transform: translate(-50%, -50%);
-// width: 20vw;
-// height: 40vh;
-// // background-color: rgba(0, 0, 0, 0.01);
-// // transition: opacity .1s ease;
-// }
+.head-img{
+  width:100vw;
+  height:50vh;
+  background:url(../assets/home/2.jpg);
+  background-size:cover;
+  }
+.breakfast{
+  h1{
+    font-weight:400;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.breakfast-food{
+  flex-direction: row;
+  position: relative;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.breakfast-img{
+  width:30vw;
+  height:35vh;
+  margin-right: 30px;
+}
+.breakfast-information{
+  // outline: 2px solid;
+  padding: 15px 0px 10px 0px;
+  width:30vw;
+  > div{
+    display: flex;
+    justify-content: space-between;
+    span{
+      font-size: 20px;
+      font-weight: 400;
+    }
+    span:nth-child(2){
+      color: #27ae60;
 
+    }
+    p{
+      color: #bdc3c7;
+    }
+  }
+}
+.food-button{
+  margin-left: 20px;
+  width:50px;
+  height:50px;
+  color:#ffffff;
+  background-color: #e74c3c;
+}
+.food-button:hover{
+  background-color: #27ae60;
+}
+.hint-box-show{
+  display: none;
+}
+.hint-box{
+  border-radius: 20px;
+  width:15vw;
+  height:10vh;
+  position: absolute;
+  top:60%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(46, 204, 113,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight:600;
+  font-size:20px;
+
+}
 </style>

@@ -1,19 +1,29 @@
 <template>
-  <div>
+<div>
+  <section class="head-img"></section>
+  <section class="backdroung-img">
     <div class="layout">
       <div class="signin-box">
         <div class="child">
           <div>SIGN IN</div>
           <div style="line-height:90px;">
             <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
+            <!-- <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div> -->
+          </div>
+        </div>
+      </div>
+      <div class="signin-box">
+        <div class="child">
+          <div>SIGN IN</div>
+          <div style="line-height:90px;">
+            <!-- <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div> -->
             <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
           </div>
         </div>
       </div>
-
-
     </div>
-  </div>
+  </section>
+</div>
 </template>
 
 <script>
@@ -122,10 +132,19 @@ export default {
 
 <style lang="scss">
 //varible
-
+// .head-img{
+//     width:100vw;
+//     height:50vh;
+//     background:url(../assets/home/2.jpg);
+//     background-size:cover;
+//   }
 %all-need{
   display:flex;
 }
+// .backdroung-img{
+//   background:url(../assets/home/footer.jpg);
+//   background-size:cover;
+// }
 .layout{
   @extend %all-need;
   justify-content: center;

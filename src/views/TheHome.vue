@@ -12,11 +12,32 @@
       </swiper>
     </div>
     <section>
-      <div class="section-information">
-        <h2>最新活動</h2>
-        <p>消費滿488即可享85折</p>
-        <p>消費滿1880即可獲得抽獎卷一張</p>
-        <p>消費滿2880即可獲得抽獎卷一張和一個隨機單品</p>
+      <div class="section-information1">
+        <div>
+          <h1>About Our Food</h1>
+          <h4>We Make Tasty Food,The Best Grills And Drinks</h4>
+          <p>Etiam Vitae Augue Odio. Ut Laoreet Ipsum Vel Ultrices Viverra. Donec Nisl Dolor, Mollis Vel Libero Id, Tempor Cursus Lectus. Vestibulum Eu Ligula Et Pharetra Efficitur. Maecenas Eleifend. Phasellus Antelig.</p>
+          <p>Etiam Vitae Augue Odio. Ut Laoreet Ipsum Vel Ultrices Viverra. Donec Nisl Dolor, Mollis Vel Libero Id, Tempor Cursus Lectus. Vestibulum Eu Ligula Et Pharetra Efficitur. Maecenas Eleifend.</p>
+        </div>
+        <div>
+          <img src="../assets/home/5.jpg">
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="section-information2">
+        <div>
+          <h1>Promotions</h1>
+          <h4>We offer the best value for money</h4>
+          <ul>
+            <li>10% off on spending over $288</li>
+            <li>Get a lottery ticket with spending over $588</li>
+            <li>Get a lottery ticket and a free breakfast when you spend 988</li>
+          </ul>
+        </div>
+        <div>
+          <img src="../assets/home/6.jpg">
+        </div>
       </div>
     </section>
   </div>
@@ -38,10 +59,10 @@ export default {
     return {
       open:false,
            items:[
-        require("../assets/chou2.png"),
-        // require("../assets/chou2.png"),
-        // require("../assets/chou1.png"),
-        // require("../assets/chou2.png")
+        require("../assets/home/1.jpg"),
+        require("../assets/home/2.jpg"),
+        require("../assets/home/3.jpg"),
+        require("../assets/home/4.jpg")
  
       ],
       swiperOption: {
@@ -113,7 +134,6 @@ export default {
 <style lang="scss">
 .pictureArea{
   width: 100vw;
-  margin-bottom:50px; 
 }
 .swiper-container {
   width: 100vw;
@@ -125,19 +145,38 @@ export default {
   color:black;
 }
 section{
-  margin-bottom:50px; 
   width:100vw;
 }
-.section-information{
+.section-information1{
     margin: 0 auto;
     padding: 50px ;
-    width:60vw;
-    outline: 1px solid #bdc3c7;
-    h2{
-      text-align: center;
-      font-weight: 400;
+    display: flex;
+    width: 100vw;
+    div:nth-child(2){
+      padding-top:50px;
     }
     p{
+      font-size: 20px;
+    }
+//  @media only screen and (max-width: 768px) {
+//    width:70vw;
+//   }
+//   @media only screen and (min-width: 320px) and (max-width: 425px) {
+//     h2{
+//       font-size: 30px;
+//     }
+//     width:100vw;
+//     outline: 0px solid;
+//   }
+}
+.section-information2{
+
+    margin: 0 auto;
+    padding: 50px;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    li{
       font-size: 20px;
     }
  @media only screen and (max-width: 768px) {
