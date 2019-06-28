@@ -141,17 +141,17 @@ export default {
   font-weight: 300;
   color: #2c3e50;
 }
-.modal-mask {
-display:none;
-position: absolute;
-z-index: 15;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 20vw;
-height: 40vh;
-// background-color: rgba(0, 0, 0, 0.01);
-// transition: opacity .1s ease;
-}
+// .modal-mask {
+// display:none;
+// position: absolute;
+// z-index: 15;
+// top: 50%;
+// left: 50%;
+// transform: translate(-50%, -50%);
+// width: 20vw;
+// height: 40vh;
+// // background-color: rgba(0, 0, 0, 0.01);
+// // transition: opacity .1s ease;
+// }
 
 </style>

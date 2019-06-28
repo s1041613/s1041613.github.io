@@ -51,17 +51,22 @@
         <div style="text-transform: uppercase;">© Copyright 2018 CHOU'. Site by CHOU.</div>
       </div>
     </footer> 
-    <div>
-  </div>
+    <div class="modal-mask" id="modal">
+      <TheSignIn class="signin-position" v-show="showLogin == true"></TheSignIn>
+      <div @click="close()" class="cross-position"><i class="fas fa-times-circle"></i></div>
+    </div>
+
 </div>
 </template>
 
 <script>
 import store from './store.js'
 import Vue from 'vue'
+import TheSignIn from './views/TheSignIn.vue'
 export default {
   store,
   components: {
+    TheSignIn,
   },
   data() {
     return {
@@ -70,6 +75,7 @@ export default {
       name:'',
       open:false,
       open2:false,
+      showLogin:false,
     }
 
   },
@@ -135,7 +141,12 @@ export default {
 
 
     goLogIn() {
-      this.$router.push('/TheSignIn')
+      this.showLogin = true
+      document.getElementById("modal").style.display="block"
+    },
+    close(){
+      document.getElementById("modal").style.display="none"
+      this.showLogin = false
     },
     goHome(){
       this.$router.push('/')
@@ -216,6 +227,21 @@ section{
 }
 *{
   box-sizing: border-box;
+}
+.signin-position{
+  z-index:10;
+  position: absolute;
+  top:20%;
+  left:30%;
+}
+.cross-position{
+  position: absolute;
+  z-index: 10;
+  top:22%;
+  right:31%;
+  i{
+    font-size: 25px;
+  }
 }
 .nav{
   width:96vw;
@@ -351,5 +377,16 @@ section{
     } 
   }
 }
-
+.modal-mask {
+display:none;
+position: fixed;
+z-index: 9998;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+/* display: table; */
+transition: opacity .3s ease;
+}
 </style>

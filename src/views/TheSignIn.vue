@@ -1,27 +1,22 @@
 <template>
 <div>
-  <section class="head-img"></section>
-  <section class="backdroung-img">
-    <div class="layout">
+  <section id="signin-area-is-show" class="signin-area">
       <div class="signin-box">
-        <div class="child">
-          <div>SIGN IN</div>
-          <div style="line-height:90px;">
-            <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div>
-            <!-- <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div> -->
+        <div class="signin-box-content">
+          <h1>CHOU'S</h1>
+          <div class="signin-box-content-gf-button">
+            <button @click="googleLogIn()" class="loginBtn loginBtn--google">Login with Google</button>
+            <button @click="fbLogIn()" class="loginBtn loginBtn--facebook">Login with Facebook</button>
+          </div>
+          <div class="signin-box-content-self-login">
+            <h3>Or Sign in with your account</h3>
+            <span><i class="fas fa-user"></i><input v-model="account" /></span>
+            <span><i class="fas fa-key"></i><input v-model="passward" /></span>
+            <button>Login</button>
+            <span>Registered｜Forget passward</span>
           </div>
         </div>
       </div>
-      <div class="signin-box">
-        <div class="child">
-          <div>SIGN IN</div>
-          <div style="line-height:90px;">
-            <!-- <div @click="googleLogIn()"><button class="loginBtn loginBtn--google">Login with Google</button></div> -->
-            <div @click="fbLogIn()"><button class="loginBtn loginBtn--facebook">Login with Facebook</button></div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 </div>
 </template>
@@ -34,6 +29,8 @@ export default {
   },
   data() {
     return {
+      account:"account",
+      passward:"passward",
 
    
     }
@@ -57,6 +54,10 @@ export default {
   
   },
   methods: {
+    // close(){
+    //   document.getElementById("signin-area-is-show").style.display="none"
+
+    // },
     //google登入
     googleLogIn() {
       Vue.googleAuth().directAccess()
@@ -131,58 +132,84 @@ export default {
 </script>
 
 <style lang="scss">
-//varible
-// .head-img{
-//     width:100vw;
-//     height:50vh;
-//     background:url(../assets/home/2.jpg);
-//     background-size:cover;
-//   }
-%all-need{
-  display:flex;
-}
-// .backdroung-img{
-//   background:url(../assets/home/footer.jpg);
-//   background-size:cover;
-// }
-.layout{
-  @extend %all-need;
-  justify-content: center;
-  align-items: center;
+.signin-area{
+  display: block;
 }
 .signin-box{
+  margin-right:40px;
   outline: 2px solid #bdc3c7;
   box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.05);
-  @extend %all-need;
+  display:flex;
   padding: 50px;
   width: 40vw;
-  height:50vh;
+  height:80vh;
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  @media only screen and (max-width: 768px) {
-    width: 70vw;
-  }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    width: 90vw;
-    height:50vh;
-    margin-top: -15%;
-  }
+  background: #ecf0f1;
 }
-.child{
-  //outline: 2px solid red;
-  @extend %all-need;
+.signin-box-content{
+  position: relative;
+  padding:50px;
+  display:flex;
   flex-direction:column;
   align-items: center;
-  line-height: 50px;
-  font-size:50px;
-  @media only screen and (max-width: 375px){
-    div{
-      font-size: 40px;
-    }
+  h1{
+    font-weight:400;
+    margin-bottom: 30px;
   }
 }
-
+.signin-box-content-gf-button{
+  display: flex;
+  flex-direction:column;
+  margin-bottom: 50px;
+}
+.signin-box-content-self-login{
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  padding:10px;
+  h3{
+    font-weight:300;
+    margin-bottom: 20px;
+  }
+  > span > input{
+    border-radius: 5px;
+    width:12vw;
+    height:5vh;
+    border:1px solid #bdc3c7; 
+    font-size: 18px;
+    color:#7f8c8d;
+    margin-bottom: 20px;
+    font-weight: 200;
+    padding: 10px;
+  }
+  > span > input:hover{
+    border:1px solid #7f8c8d; 
+  }
+  > span > i{
+    font-size: 25px;
+    margin-right: 10px;
+  }
+  button{
+    border-radius: 5px;
+    width:14vw;
+    height:6vh;
+    font-size: 20px;
+    background-color: #e84118;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+  button:hover{
+    background-color: #e74c3c;
+  }
+  span{
+    font-size: 15px;
+    color:#7f8c8d;
+  }
+  
+}
 /* Shared */
 .loginBtn {
   box-sizing: border-box;
