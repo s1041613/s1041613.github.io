@@ -1,24 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+
 import TheHome from './views/TheHome.vue'
-
-
-import TheClothes from './views/TheClothes.vue'
-import TheClothesItem from './views/TheClothesItem.vue'
-
-import TheBottom from './views/TheBottom.vue'
-import TheBottomItem from './views/TheBottomItem.vue'
-
-
-
-import TheVacation from './views/TheVacation.vue'
-
-import TheDaning from './views/TheDaning.vue'
-
-import TheQA from './views/TheQA.vue'
-import TheShopCart from './views/TheShopCart.vue'
 import TheSignIn from './views/TheSignIn.vue'
 
+import TheOurService from './views/TheOurService.vue'
+import TheBreakfast from './views/TheBreakfast.vue'
+import TheLunch from './views/TheLunch.vue'
+import TheDinner from './views/TheDinner.vue'
+
+import TheShopCart from './views/TheShopCart.vue'
+
+// import TheClothes from './views/TheClothes.vue'
+// import TheClothesItem from './views/TheClothesItem.vue'
+// import TheBottomItem from './views/TheBottomItem.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -36,50 +32,42 @@ export default new Router({
       }
 
     },
+    // {
+    //   path: '/TheClothes',
+    //   name: 'TheClothes',
+    //   component:TheClothes,
+    //   meta: {
+    //     showTitle: true,
+    //   },
+    // },
     {
-      path: '/TheClothes',
-      name: 'TheClothes',
-      component:TheClothes,
+      path: '/TheOurService',
+      name: 'TheOurService',
+      component:TheOurService,
       meta: {
         showTitle: true,
-      },
+      }
     },
+    // {
+    //   path: '/TheBottom/bottomItem/:id',
+    //   name: 'TheBottomItem',
+    //   component:TheBottomItem,
+    //   meta: {
+    //     showTitle: true,
+    //   }
+    // },
     {
-      path: '/TheClothes/clothesItem',
-      name: 'TheClothesItem',
-      component:TheClothesItem,
-      meta: {
-        showTitle: true,
-      },
-    },
-    {
-      path: '/TheBottom',
-      name: 'TheBottom',
-      component:TheBottom,
+      path: '/TheDinner',
+      name: 'TheDinner',
+      component:TheDinner,
       meta: {
         showTitle: true,
       }
     },
     {
-      path: '/TheBottom/bottomItem/:id',
-      name: 'TheBottomItem',
-      component:TheBottomItem,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheVacation',
-      name: 'TheVacationItem',
-      component:TheVacation,
-      meta: {
-        showTitle: true,
-      }
-    },
-    {
-      path: '/TheDaning',
-      name: 'TheDaning',
-      component:TheDaning,
+      path: '/TheBreakfast',
+      name: 'TheBreakfast',
+      component:TheBreakfast,
       meta: {
         showTitle: true,
       }
@@ -101,9 +89,9 @@ export default new Router({
       }
     },
     {
-      path: '/TheQA',
-      name: 'TheQA',
-      component: TheQA,
+      path: '/TheLunch',
+      name: 'TheLunch',
+      component: TheLunch,
       meta: {
         showTitle: true,
       }

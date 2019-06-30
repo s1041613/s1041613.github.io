@@ -54,13 +54,13 @@ export default {
   },
   methods: {
     goBREAKFAST(){
-      this.$router.push({path:"/TheDaning"})
+      this.$router.push({path:"/TheBreakfast"})
     },
     goLUNCH(){
-      this.$router.push({path:"/TheQA"})
+      this.$router.push({path:"/TheLunch"})
     },
     goDINNER(){
-      this.$router.push({path:"/TheVacation"})
+      this.$router.push({path:"/TheDinner"})
     },
 
 

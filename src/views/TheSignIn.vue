@@ -172,7 +172,7 @@ export default {
   padding:10px;
   h3{
     font-weight:300;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
   > span > input{
     border-radius: 5px;

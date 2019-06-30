@@ -1,44 +1,35 @@
 <template>
   <div id="app">
-    <section style="position:relative;outline:10px solid;">
+    <section style="position:relative;">
       <div><router-view></router-view></div>
-      <nav>
-        <div class="nav">
+      <!-- <nav>
+        <div class="nav-max">
           <div>
             <button @click="goHome()" class="nav-button">HOME</button>
-            <button @click="goTheButtom()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
+            <button @click="goTheOurService()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
           </div>
-          <!-- <div @click="openNav()"><i class="fas fa-align-justify nav-left-icon"></i></div> 
-          <div class="nav-sidebar" v-show="this.open == true">
-            <div class="nav-sidebar-text">
-              <h1>BASE</h1>
-              <h3 @click="goTheClothes()">breakfast</h3>
-              <h3 @click="goTheButtom()">lunch</h3>
-              <h3 @click="goTheButtom()">dinner</h3>
-              <h1>OOTD</h1>
-              <h3 @click="goTheVacation()">VACATION</h3>
-              <h3 @click="goTheDaning()">DANING</h3>
-            </div>
-          </div> -->
           <div @click="goHome()" class="nav-title-img">
             <img src="./assets/logo.png">
           </div> 
           <div class="nav-right-icon">
             <button @click="goLogIn()" class="nav-button">LOG IN</button>
             <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
+            <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>
           </div>
-          <!-- <div class="nav-right-icon">
-            <div @click="goLogIn()" class="login" v-if="this.status == false">
-              <img class="nav-right-icon-img" src="./assets/account.png">
-            </div>
-            <div @click="goShopCart()">
-              <img class="nav-right-icon-img" src="./assets/shopcart.png" />
-            </div>
-            <div @click="logOut()" v-if="this.status == true">
-              <img class="img-logout" src="./assets/logout.png">
-            </div>
-          </div> -->
         </div>
+      </nav> -->
+      <nav class="nav-min">
+          <div @click="openNav()"><i class="fas fa-align-justify nav-min-icon"></i></div> 
+          <div v-show="this.open == true">
+              <button @click="goHome()" class="nav-button">HOME</button>
+              <button @click="goTheOurService()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
+              <div @click="goHome()" class="nav-title-img">
+              <img src="./assets/logo.png">
+              </div> 
+              <button @click="goLogIn()" class="nav-button">LOG IN</button>
+              <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
+              <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>    
+          </div> 
       </nav>
     </section>
     <footer>
@@ -55,7 +46,6 @@
       <TheSignIn class="signin-position" v-show="showLogin == true"></TheSignIn>
       <div @click="close()" class="cross-position"><i class="fas fa-times-circle"></i></div>
     </div>
-
 </div>
 </template>
 
@@ -70,6 +60,8 @@ export default {
   },
   data() {
     return {
+      showBuyNum:false,
+      buyNum:0,
       text:"LOG IN",
       status:false,
       name:'',
@@ -80,9 +72,16 @@ export default {
 
   },
   created() {
-    console.log(this.$route.meta.showTitle)
-    //console.log(this.status,this.name)
-    //console.log(JSON.parse(localStorage.getItem('signinStatus')),localStorage.getItem('name'))
+    if (localStorage.hasOwnProperty('buy')){
+      let buy = JSON.parse(localStorage.getItem('buy'))
+      console.log(buy.length)
+      if( (buy.length +1) > 0){
+        this.buyNum = buy.length
+        this.showBuyNum = true
+      }
+    }else{
+      this.showBuyNum = false
+    }
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.status = JSON.parse(localStorage.getItem('signinStatus')) 
     }
@@ -97,8 +96,17 @@ export default {
 
   },
   updated() {
-    //console.log(this.status,this.name)
-    //console.log(JSON.parse(localStorage.getItem('signinStatus')),localStorage.getItem('name'))
+    if (localStorage.hasOwnProperty('buy')){
+      let buy = JSON.parse(localStorage.getItem('buy'))
+      console.log(buy.length)
+      if( (buy.length +1) > 0){
+        this.buyNum = buy.length
+        this.showBuyNum = true
+      }
+    }else{
+      this.showBuyNum = false
+    }
+
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.status = JSON.parse(localStorage.getItem('signinStatus')) 
     }
@@ -129,14 +137,14 @@ export default {
       this.$router.push('/TheClothes')
 
     },
-    goTheButtom(){
-      this.$router.push('/TheBottom')
+    goTheOurService(){
+      this.$router.push('/TheOurService')
     },
     goTheVacation(){
       this.$router.push('/TheVacation')
     },
-    goTheDaning(){
-      this.$router.push('/TheDaning')
+    goTheBreakfast(){
+      this.$router.push('/TheBreakfast')
     },
 
 
@@ -231,19 +239,19 @@ section{
 .signin-position{
   z-index:10;
   position: absolute;
-  top:20%;
+  top:15%;
   left:30%;
 }
 .cross-position{
   position: absolute;
   z-index: 10;
-  top:22%;
+  top:18%;
   right:31%;
   i{
     font-size: 25px;
   }
 }
-.nav{
+.nav-max{
   width:96vw;
   margin: 0 auto;
   position: absolute;
@@ -287,30 +295,56 @@ section{
   img:hover{
     opacity: 0.5;
   }
-  @media only screen and (max-width: 768px) {
-    img{
-      width:30vw;
-    }
-  }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-    img{
-      width:40vw;
-    }
-  }
+  // @media only screen and (max-width: 768px) {
+  //   img{
+  //     width:30vw;
+  //   }
+  // }
+  // @media only screen and (min-width: 320px) and (max-width: 425px) {
+  //   img{
+  //     width:40vw;
+  //   }
+  // }
 }
 .nav-right-icon{
   display: flex;
 }
 .nav-right-icon-img{
   width:4vw;
-  @media only screen and (max-width: 768px) {
-      width:6vw;
-  }
-  @media only screen and (min-width: 320px) and (max-width: 425px) {
-      width:8vw;
-  }
+  // @media only screen and (max-width: 768px) {
+  //     width:6vw;
+  // }
+  // @media only screen and (min-width: 320px) and (max-width: 425px) {
+  //     width:8vw;
+  // }
 }
+.nav-min{
 
+  //outline: 2px solid;
+  position: absolute;
+  top:1%;
+  right:3%;
+  z-index:10;
+  // background-color: #ffffff;
+}
+.nav-min-icon{
+  font-size: 30px;
+  
+}
+.pop-circle-buy-num{
+  position: absolute;
+  right:1%;
+  top:-10%;
+  width:25px;
+  height: 25px;
+  border-radius:999em;
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .nav-sidebar{
   position: absolute;
   z-index: -100;
@@ -357,7 +391,7 @@ section{
   justify-content: center;
   align-items: center;
   line-height: 30px;
-  background: url(./assets/home/footer.jpg);
+  background: url(./assets/home/1.jpg);
   background-size: cover;
   height:40vh;
   font-weight: 400;
@@ -365,17 +399,17 @@ section{
     font-size:18px;
     line-height: 30px;
   }
-  @media only screen and (max-width: 375px){
-    div{
-      font-size: 15px;
-      line-height: 30px;
-    } 
-  }
-  @media only screen and (max-width: 320px){
-    div{
-      font-size: 12px;
-    } 
-  }
+  // @media only screen and (max-width: 375px){
+  //   div{
+  //     font-size: 15px;
+  //     line-height: 30px;
+  //   } 
+  // }
+  // @media only screen and (max-width: 320px){
+  //   div{
+  //     font-size: 12px;
+  //   } 
+  // }
 }
 .modal-mask {
 display:none;

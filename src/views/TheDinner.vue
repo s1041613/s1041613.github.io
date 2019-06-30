@@ -10,7 +10,7 @@
             <div class="dinner-information" v-for="i in dinner[0]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -20,7 +20,7 @@
             <div class="dinner-information" v-for="i in dinner[1]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -30,7 +30,7 @@
             <div class="dinner-information" v-for="i in dinner[2]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add()" class="food-button">+</button></span>
+                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -75,12 +75,31 @@ export default {
       console.log(id)
       this.$router.push({name:cname,query: { id:id ,img:img,name:name,money:money,size:size}})
     },
-    add(){
+    add(id,name,price){
       document.getElementById('hint-box').style.display="block"
       var t=setTimeout(function(){
         document.getElementById('hint-box').style.display="none"
         },1500);
-
+      let buyItem=[]
+      let count=1
+      let item={
+        id:id,
+        name: name,
+        price: price,
+        count:count,
+        total:price*count
+      }
+      buyItem.push(item)
+      item ={}
+      if(!localStorage.hasOwnProperty('buy')){
+        localStorage.setItem('buy',JSON.stringify(buyItem))
+      }else{
+        let oldBuy = JSON.parse(localStorage.getItem('buy'))
+        for(let i in oldBuy){
+          buyItem.push(oldBuy[i])
+        }
+        localStorage.setItem('buy',JSON.stringify(buyItem))
+      }
     },
 
   },
