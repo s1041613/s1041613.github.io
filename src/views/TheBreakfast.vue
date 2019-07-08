@@ -11,9 +11,15 @@
           <div id="breakfast-food-1">
             <div class="food-type-img"><img  src="../assets/breakfast/1.jpg"></div>
             <div class="food-type-information" v-for="i in breakfast[0]" :key="i.key">
-              <div>
-                <span>{{i.name}}</span>
-                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
+              <div class="flex-row">
+                <div>{{i.name}}</div>
+                <div>
+                  <span>{{i.price}}</span>
+                  <select>
+                    <option v-for="num in 10" :key="num.key">{{num}}</option>
+                  </select>
+                  <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
+                </div>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -21,9 +27,15 @@
           <div id="breakfast-food-2">
             <img class="food-type-img" src="../assets/breakfast/2.jpg">
             <div class="food-type-information" v-for="i in breakfast[1]" :key="i.key">
-              <div>
-                <span>{{i.name}}</span>
-                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
+              <div class="flex-row">
+                <div>{{i.name}}</div>
+                <div>
+                  <span>{{i.price}}</span>
+                  <select>
+                    <option v-for="num in 10" :key="num.key">{{num}}</option>
+                  </select>
+                  <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
+                </div>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -31,9 +43,15 @@
           <div id="breakfast-food-3">
             <img style="margin-right:0px;" class="food-type-img" src="../assets/breakfast/3.jpg">
             <div class="food-type-information" v-for="i in breakfast[2]" :key="i.key">
-              <div>
-                <span>{{i.name}}</span>
-                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
+              <div class="flex-row">
+                <div>{{i.name}}</div>
+                <div>
+                  <span>{{i.price}}</span>
+                  <select>
+                    <option v-for="num in 10" :key="num.key">{{num}}</option>
+                  </select>
+                  <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
+                </div>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -42,8 +60,8 @@
       </div>
     </section>
     <div id="hint-box" class="hint-box-show">
-      <div class="hint-box">
-        <div>successful <i style="font-size:20px;" class="fas fa-check"></i> </div>
+      <div class="hint-box add-hint-box">
+        <div>Product successfully added to the shopping cart <i class="fas fa-check"></i> </div>
       </div>
     </div>
 
@@ -79,7 +97,7 @@ export default {
       document.getElementById('hint-box').style.display="block"
       var t=setTimeout(function(){
         document.getElementById('hint-box').style.display="none"
-        },1500);
+        },1000);
       let buyItem=[]
       let count=1
       let item={

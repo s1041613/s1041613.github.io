@@ -1,5 +1,15 @@
 //共用css
-
+.flex-row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 //app,shopCart的btn
 .nav-button{
   width:10vw;
@@ -24,6 +34,9 @@
    @media only screen and (max-width: 375px){
      width:40vw;
    } 
+   @media only screen and (max-width: 320px){
+    width:45vw;
+  } 
 }
 .nav-button:hover{
   background-color:#fff;
@@ -106,7 +119,7 @@
   background-size:cover;
   }
 
-//ourService,B/L/Dm用的btn
+//ourService,B/L/D用的btn
 .read-button{
   padding: 10px;
   background-color: #e74c3c;
@@ -131,17 +144,16 @@
 }
 
 .icon-plus{
-  margin-left: 20px;
   font-size:25px;
-  // width:50px;
-  // height:50px;
-  // @media only screen and (min-width: 320px) and (max-width: 425px) {
-  //   width:30px;
-  //   height:30px;
-  // }
-  // @media only screen and (max-width: 375px){
-  //   width:35vw;
-  // }
+  @media only screen and (max-width: 768px) {
+    //font-size:23px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    font-size:20px;
+  }
+  @media only screen and (max-width: 320px)  {
+    // font-size: 15px;
+  }
 }
 
 //B/L/D的css
@@ -189,16 +201,54 @@
   > div{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+    
+    div:nth-child(1){
+      font-weight: 500;
+      @media only screen and (max-width: 375px)  {
+        font-size:12px;
+      
+      }
+    }
+    div:nth-child(2){
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width:130px;
+      padding: 5px;
+      span{
+        color: #27ae60;
+        font-weight:500;
+        font-size:20px;  
+      }
+      i{
+        padding: 5px;
+      }
+      i:hover{
+        color: #27ae60;
+        cursor: pointer;
+      }
+      @media only screen and (min-width: 320px) and (max-width: 425px) {
+        width:110px;
+        span{
+          font-size:18px;
+        }
+      }
+      @media only screen and (max-width: 375px)  {
+        width:100px;
+        span{
+          font-size:16px;
+        }
+      }
+      @media only screen and (max-width: 320px)  {
+        width:90px;
+        span{
+          font-size:15px;
+        }
+      }
+    }
 
-    span{
-      font-size: 20px;
-      font-weight: 400;
-    }
-    span:nth-child(2){
-      color: #27ae60;
-    }
+
+
     p{
       color: #bdc3c7;
     }
@@ -230,8 +280,6 @@
 }
 .hint-box{
   border-radius: 20px;
-  width:15vw;
-  height:10vh;
   position: fixed;
   top:50%;
   left:50%;
@@ -242,20 +290,38 @@
   align-items: center;
   color: #ffffff;
   font-weight:600;
+}
+.add-hint-box{
   font-size:20px;
+  width:40vw;
+  height:10vh;
+  i{
+    font-size:20px;
+  }
   @media only screen and (max-width: 768px) {
-    width:20vw;
+    width:70vw;
+    // font-size:10px;
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
-    width:40vw;
-    font-size:18px;
+    width:80vw;
+    font-size:12px;
+    i{
+      font-size:16px;
+    }
+  }
+  @media only screen and (max-width: 375px){
+    width:85vw;
   }
   @media only screen and (max-width: 320px){
-    width:50vw;
-    font-size:18px;
+    width:95vw;
+    font-size:10px;
+    i{
+      font-size:12px;
+    }
   }
 
 }
+
 
 
  

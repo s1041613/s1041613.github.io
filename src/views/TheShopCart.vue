@@ -3,7 +3,7 @@
   <!-- 購物車沒東西的時候 -->
   <section class="noItem flex-row back-img" v-show="this.haveItem == 0">
       <i class="fas fa-shopping-cart img-shopcar">
-        <button class="nav-button plus" @click="goHome()">Buy Now</button>
+        <button class="nav-button plus" @click="goBREAKFAST()">Buy Now</button>
       </i>
   </section>
   <section>
@@ -56,7 +56,6 @@
           <div>STEP.3 Confirm</div>
         </div>
         <div class="test">
-
           <div class="section5">
             <div class="section5-item">
               <div>NAME</div>
@@ -137,6 +136,16 @@
         </div>
       </div>
   </section>
+  <div id="hint-box2" class="hint-box-show">
+    <div class="delete-hint-box hint-box">
+      <div>Item successfully removed <i class="fas fa-check"></i></div>
+    </div>
+  </div>
+  <div id="hint-box3" class="hint-box-show">
+    <div class="delete-hint-box hint-box require-hint-box">
+      <div>Every item is required <i class="fas fa-exclamation-triangle"></i></div>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -231,6 +240,9 @@ export default {
 
   },
   methods: {
+    goBREAKFAST(){
+      this.$router.push({path:"/TheBreakfast"})
+    },
     goHome(){
       this.$router.push({path:'/'})
     },
@@ -239,6 +251,10 @@ export default {
       this.$router.push({path:'/'})
     },
     deleteItem(id){
+      document.getElementById('hint-box2').style.display="block"
+      var t=setTimeout(function(){
+        document.getElementById('hint-box2').style.display="none"
+        },1000);
       let nowItem = JSON.parse(localStorage.getItem('buy'))
       let newItem =[]
       nowItem.forEach((nowItem) => {
@@ -273,7 +289,11 @@ export default {
           this.email.length <1 ||
           this.adress.length < 1 ){
             this.haveItem = 2
-            alert("每項皆為必填～")
+            document.getElementById('hint-box3').style.display="block"
+            var t=setTimeout(function(){
+              document.getElementById('hint-box3').style.display="none"
+            },1000);
+
         }else{
           this.haveItem = 3
           document.getElementById('page3').style.height='auto'
@@ -299,18 +319,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.flex-column{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
 .back-img{
   background: url('../assets/home/2.jpg');
   background-size:cover;
 }
 .noItem{
-  border: 1px solid;
   width: 100vw;
   height: 100vh;
   i{
@@ -399,15 +412,8 @@ export default {
       font-size: 15px;
     }
   }
-  // @media only screen and (min-width: 320px) and (max-width: 425px) {
-  // width:70vw;
-  // div{
-  //   font-size:2px;
-  // }
-  // }
 }
 .section4{
-  //border:2px solid;
   width:80vw;
   justify-content:space-between;
   display: flex;
@@ -470,5 +476,25 @@ export default {
         font-size:12px;
       }
   }
+}
+.delete-hint-box{
+  width:25vw;
+  height:6vh;
+  @media only screen and (max-width: 768px) {
+      width:40vw;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 425px) {
+      width:60vw;
+      font-size:15px;
+    }
+    @media only screen and (max-width: 375px){
+      width:70vw;
+    }
+    @media only screen and (max-width: 375px){
+      width:80vw;
+    }
+}
+.require-hint-box{
+  background-color: #e74c3c;
 }
 </style>
