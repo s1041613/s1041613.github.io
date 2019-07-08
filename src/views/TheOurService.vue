@@ -193,6 +193,7 @@ export default {
   overflow: hidden;
   @media only screen and (max-width: 768px) {
     width:calc((100%-80px) /3);
+    height:25vh;
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     width:calc((100%-80px) /2);
