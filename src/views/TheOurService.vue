@@ -183,19 +183,21 @@ export default {
 }
 .img-box{
   
-  width:calc((100%-160px) /4);
+  width:calc((100%-80px) /4);
   height:30vh;
   overflow: hidden;
   @media only screen and (max-width: 768px) {
     border: 2px solid red;
-    width:calc((100%-160px) /3);
+    width:calc((100%-80px) /3);
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
-    width:calc((100%-160px) /2);
+    border: 2px solid pink;
+    width:calc((100%-80px) /2);
   }
   @media only screen and (max-width: 375px){
-    width:calc((100%-160px) /2);
-    height:25vh;
+    border: 2px solid orange;
+    width:calc((100%-80px) /2);
+    height:20vh;
   }
 }
 .gallery-food-img{
