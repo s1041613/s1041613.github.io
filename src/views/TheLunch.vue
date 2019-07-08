@@ -3,11 +3,11 @@
     <section class="head-img"></section>
     <section>
       <div class="layout">
-        <div class="my-font-css">
+        <div class="my-font-css mt-30">
           <span>lunch </span>
           <span>Menu</span>
         </div>
-        <div class="food-type">
+        <div class="food-type ">
           <div id="lunch-food-1">
             <img class="food-type-img" src="../assets/lunch/1.jpg">
             <div class="food-type-information" v-for="i in lunch[0]" :key="i.key">

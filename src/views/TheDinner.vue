@@ -3,7 +3,7 @@
     <section class="head-img"></section>
     <section>
       <div class="layout">
-        <div class="my-font-css">
+        <div class="my-font-css mt-30">
           <span>dinner </span>
           <span>Menu</span>
         </div>
