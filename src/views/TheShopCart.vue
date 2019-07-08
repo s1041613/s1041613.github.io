@@ -153,14 +153,10 @@ export default {
     return {
       shopCart:[],
       haveItem:0,
-      email:"s",
-      name:'s',
-      phone:'s',
-      adress:'s',
-			columns: ['name', 'price', 'count', 'total','delete'],
-			tableOptions: {
-				filterable: false,
-			},
+      email:"",
+      name:'',
+      phone:'',
+      adress:'',
     }
 
   },
