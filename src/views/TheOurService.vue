@@ -10,19 +10,19 @@
         <div id="BREAKFAST">
           <i class="fas fa-utensils food-img"></i>
           <h3>BREAKFAST</h3>
-          <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to duty</p>
+          <p>There are many variations of passages of Lorem Ipsum available,but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
           <button @click="goBREAKFAST()" class="read-button">Read More</button>
         </div>
         <div id="LUNCH">
           <i class="fas fa-utensils food-img"></i>
           <h3>LUNCH FOOD</h3>
-          <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to duty</p>
+          <p>There are many variations of passages of Lorem Ipsum available,but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
           <button @click="goLUNCH()" class="read-button">Read More</button>
         </div>
         <div id="DINNER">
           <i class="fas fa-utensils food-img"></i>
           <h3>DINNER FOOD</h3>
-          <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to fall in the </p>
+          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
           <button @click="goDINNER()" class="read-button">Read More</button>
         </div>
       </div>
