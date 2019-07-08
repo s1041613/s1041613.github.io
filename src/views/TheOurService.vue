@@ -197,6 +197,7 @@ export default {
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     width:calc((100%-80px) /2);
+    height:20vh;
   }
   @media only screen and (max-width: 320px){
     width:calc((100%-80px) /2);
