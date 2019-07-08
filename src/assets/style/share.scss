@@ -1,0 +1,262 @@
+//共用css
+
+//app,shopCart的btn
+.nav-button{
+  width:10vw;
+  height:6vh;
+  border-radius:30px;
+  border:2px solid #fff;
+  font-weight:500;
+  background-color:rgb(127, 140, 141,0.5);
+  color: #fff;
+  margin-right:30px;
+   @media only screen and (max-width: 1024px) {
+     width:15vw;
+   }
+   @media only screen and (max-width: 768px) {
+     margin-right:0px;
+     margin-bottom: 20px;
+     width:20vw;
+   }
+   @media only screen and (min-width: 320px) and (max-width: 425px) {
+     width:30vw;
+   }
+   @media only screen and (max-width: 375px){
+     width:40vw;
+   } 
+}
+.nav-button:hover{
+  background-color:#fff;
+  color: rgb(231, 76, 60);
+}
+.plus{
+  position:absolute;
+  font-size:20px;
+  top:115%;
+  left:23%;
+  @media only screen and (max-width: 768px) {
+    top:115%;
+    left:19%;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:25vw;
+    font-size:17px;
+    left:20%;
+  }
+  @media only screen and (max-width: 375px){
+    width:30vw;
+    left:17%;
+    font-size:16px;
+  } 
+  @media only screen and (max-width: 320px){
+    width:35vw;
+    left:17%;
+    font-size:16px;
+  } 
+
+
+}
+//home,ourService的font-style
+.my-font-css{
+  span{
+    font-size:50px;
+    font-weight:400;
+    position: relative;
+  }
+  span:nth-child(2){
+    font-weight:200;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  span:nth-child(1)::before{
+    position: absolute;
+    top:100%;
+    left:15%;
+    content:"";
+    width:150px;
+    height:3px;
+    background-color: #e74c3c;
+  }
+  @media only screen and (max-width: 768px) {
+    span{
+      font-size:40px;
+    }
+    span:nth-child(1)::before{
+      width:100px;
+    }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    span{
+      font-size:25px;
+    }
+    span:nth-child(1)::before{
+      width:70px;
+    }
+  }
+}
+.mt-30{
+  margin-top:30px;
+}
+
+//頭的圖片
+.head-img{
+  width:100vw;
+  height:50vh;
+  background:url(./assets/home/2.jpg);
+  background-size:cover;
+  }
+
+//ourService,B/L/Dm用的btn
+.read-button{
+  padding: 10px;
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: 0px;
+  width:10vw;
+  text-align: center;
+  @media only screen and (max-width: 768px) {
+    width:18vw;
+
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:25vw;
+  }
+  @media only screen and (max-width: 375px){
+    width:35vw;
+  }
+
+}
+.read-button:hover{
+  background-color: #27ae60;
+}
+
+.icon-plus{
+  margin-left: 20px;
+  font-size:25px;
+  // width:50px;
+  // height:50px;
+  // @media only screen and (min-width: 320px) and (max-width: 425px) {
+  //   width:30px;
+  //   height:30px;
+  // }
+  // @media only screen and (max-width: 375px){
+  //   width:35vw;
+  // }
+}
+
+//B/L/D的css
+
+.layout{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.food-type{
+  outline: 2px solid;
+  flex-direction: row;
+  // position: relative;
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 768px) {
+    width:100vw;
+    flex-direction: column;
+  }
+}
+.food-type-img{
+  width:30vw;
+  height:35vh;
+  margin-right: 30px;
+  img{
+    width: 100%;
+    height:100%;
+  }
+  @media only screen and (max-width: 768px) {
+    width:80vw;
+    height:50vh;
+    margin-right: 0px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:80vw;
+    height:35vh;
+  }
+}
+.food-type-information{
+
+  padding: 15px 0px 10px 0px;
+  width:30vw;
+  > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    span{
+      font-size: 20px;
+      font-weight: 400;
+    }
+    span:nth-child(2){
+      color: #27ae60;
+    }
+    p{
+      color: #bdc3c7;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    width:80vw;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    p{
+      font-size:12px;
+    }
+    div > span{
+      font-size:15px;
+    }
+  }
+  @media only screen and (max-width: 320px)  {
+    p{
+      font-size:9px;
+    }
+    div > span{
+      font-size:12px;
+    }
+  }
+}
+
+//加入商品的提示匡
+.hint-box-show{
+  display: none;
+}
+.hint-box{
+  border-radius: 20px;
+  width:15vw;
+  height:10vh;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color: rgba(46, 204, 113,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-weight:600;
+  font-size:20px;
+  @media only screen and (max-width: 768px) {
+    width:20vw;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:40vw;
+    font-size:18px;
+  }
+  @media only screen and (max-width: 320px){
+    width:50vw;
+    font-size:18px;
+  }
+
+}
+
+
+ 

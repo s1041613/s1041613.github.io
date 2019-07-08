@@ -1,41 +1,55 @@
 <template>
   <div>
     <section class="head-img"></section>
-    <section class="our-service">
-      <h1>Our Services</h1>
+    <section class="my-layout">
+      <div class="my-font-css">
+        <span>Our </span>
+        <span>Services</span>
+      </div>
       <div class="food">
-        <div>
+        <div id="BREAKFAST">
           <i class="fas fa-utensils food-img"></i>
           <h3>BREAKFAST</h3>
           <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to duty</p>
           <button @click="goBREAKFAST()" class="read-button">Read More</button>
         </div>
-        <div>
+        <div id="LUNCH">
           <i class="fas fa-utensils food-img"></i>
           <h3>LUNCH FOOD</h3>
           <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to duty</p>
           <button @click="goLUNCH()" class="read-button">Read More</button>
         </div>
-        <div>
+        <div id="DINNER">
           <i class="fas fa-utensils food-img"></i>
           <h3>DINNER FOOD</h3>
           <p>Quisque accumsan erat dolor. Ve stibulum id lacus placerat Pleas ureblame belongs to fall in the </p>
-          <button @click="goDINNER ()" class="read-button">Read More</button>
+          <button @click="goDINNER()" class="read-button">Read More</button>
         </div>
       </div>
-
+    </section>
+    <section class="my-layout">
+      <div class="my-font-css">
+        <span>Food </span>
+        <span>Gallery</span>
+      </div>
+      <div class='gallery-food'>
+        <div v-for="img in imgItem" :key="img.key" class="img-box">
+          <img :src="img" class="gallery-food-img"/>
+        </div>
+      </div>
     </section>
 
   </div>
 </template>
 
 <script>
-
+import imgItem from "../json/gallery.json";
 export default {
   components: {
   },
   data() {
     return {
+      imgItem,
    
     }
   },
@@ -79,14 +93,14 @@ export default {
     background:url(../assets/home/2.jpg);
     background-size:cover;
   }
-.our-service{
-  h1{
-    margin-bottom: 50px;
-  }
-  padding: 50px;
-
+.my-layout{
+  //border:2px solid;
+  padding: 40px;
 }
+
+//our service block
 .food{
+  //border: 2px solid;
   display: flex;
   justify-content: space-around;
   div{
@@ -101,21 +115,96 @@ export default {
       padding: 10px;
     }
   }
+  @media only screen and (max-width: 1024px) {
+    h3{
+      font-size:20px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div{
+      width:80vw;
+      margin-bottom: 23px;
+      h3{
+        font-size: 25px;
+      }
+      p{
+        font-size: 20px;
+      }
+    }
+
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    padding: 30px;
+    div{      
+      h3{
+        font-size: 23px;
+      }
+      p{
+        font-size: 20px;
+      }
+    }
+  }
+  @media only screen and (max-width: 375px){
+    div{
+      p{
+        font-size: 20px;
+      }
+    }
+  }
+  @media only screen and (max-width: 320px){
+    div{
+      h3{
+        font-size: 20px;
+      }
+      p{
+        font-size: 18px;
+      }
+    }
+  }
+  
 }
 .food-img{
   font-size:50px;
   color: #e74c3c; 
 }
-.read-button{
-  padding: 10px;
-  background-color: #e74c3c;
-  color: #ffffff;
-  border: 0px;
-  width:10vw;
-  text-align: center;
+//food gallery block
+.gallery-food{
+  //border: 2px solid;
+  padding: 30px;
+  display: flex;
+  flex-wrap:wrap;
+  @media only screen and (max-width: 768px) {
+    padding: 0px;
+  }
 }
-.read-button:hover{
-  background-color: #27ae60;
+.img-box{
+  //border: 2px solid red;
+  width:calc((100%-160px) /4);
+  height:30vh;
+  overflow: hidden;
+  @media only screen and (max-width: 768px) {
+    width:calc((100%-160px) /3);
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    
+    width:calc((100%-160px) /2);
+  }
+  @media only screen and (max-width: 375px){
+    width:calc((100%-160px) /2);
+    height:25vh;
+  }
+}
+.gallery-food-img{
+  width:100%;
+  height:100%;
+}
+.gallery-food-img:hover{
+  transition: transform 0.5s;
+  transform: scale(1.2);
 }
 </style>
 

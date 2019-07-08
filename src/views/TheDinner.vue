@@ -2,35 +2,38 @@
   <div>
     <section class="head-img"></section>
     <section>
-      <div class="dinner">
-        <h1>dinner Menu List</h1>
-        <div class="dinner-food">
+      <div class="layout">
+        <div class="my-font-css">
+          <span>dinner </span>
+          <span>Menu</span>
+        </div>
+        <div class="food-type">
           <div id="dinner-food-1">
-            <img class="dinner-img" src="../assets/dinner/1.jpg">
-            <div class="dinner-information" v-for="i in dinner[0]" :key="i.key">
+            <img class="food-type-img" src="../assets/dinner/1.jpg">
+            <div class="food-type-information" v-for="i in dinner[0]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
+                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
           </div>
           <div d="dinner-food-2">
-            <img class="dinner-img" src="../assets/dinner/2.jpg">
-            <div class="dinner-information" v-for="i in dinner[1]" :key="i.key">
+            <img class="food-type-img" src="../assets/dinner/2.jpg">
+            <div class="food-type-information" v-for="i in dinner[1]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
+                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
           </div>
           <div d="dinner-food-3">
-            <img style="margin-right:0px;" class="dinner-img" src="../assets/dinner/3.jpg">
-            <div class="dinner-information" v-for="i in dinner[2]" :key="i.key">
+            <img style="margin-right:0px;" class="food-type-img" src="../assets/dinner/3.jpg">
+            <div class="food-type-information" v-for="i in dinner[2]" :key="i.key">
               <div>
                 <span>{{i.name}}</span>
-                <span>{{i.price}}<button @click="add(i.id,i.name,i.price)" class="food-button">+</button></span>
+                <span>{{i.price}}<i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i></span>
               </div>
               <p>{{i.describe}}</p>
             </div>
@@ -109,83 +112,3 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.head-img{
-  width:100vw;
-  height:50vh;
-  background:url(../assets/home/2.jpg);
-  background-size:cover;
-  }
-.dinner{
-  h1{
-    font-weight:400;
-  }
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.dinner-food{
-  flex-direction: row;
-  position: relative;
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.dinner-img{
-  width:30vw;
-  height:35vh;
-  margin-right: 30px;
-}
-.dinner-information{
-  // outline: 2px solid;
-  padding: 15px 0px 10px 0px;
-  width:30vw;
-  > div{
-    display: flex;
-    justify-content: space-between;
-    span{
-      font-size: 20px;
-      font-weight: 400;
-    }
-    span:nth-child(2){
-      color: #27ae60;
-
-    }
-    p{
-      color: #bdc3c7;
-    }
-  }
-}
-.food-button{
-  margin-left: 20px;
-  width:50px;
-  height:50px;
-  color:#ffffff;
-  background-color: #e74c3c;
-}
-.food-button:hover{
-  background-color: #27ae60;
-}
-.hint-box-show{
-  display: none;
-}
-.hint-box{
-  border-radius: 20px;
-  width:15vw;
-  height:10vh;
-  position: absolute;
-  top:60%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  background-color: rgba(46, 204, 113,0.9);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ffffff;
-  font-weight:600;
-  font-size:20px;
-
-}
-</style>

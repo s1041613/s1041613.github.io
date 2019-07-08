@@ -1,50 +1,63 @@
 <template>
   <div id="app">
     <section style="position:relative;">
+      <nav>
+          <div class="nav-min" @click="openNav()"><i class="fas fa-align-justify nav-min-icon"></i>
+            <h1 @click="goHome()" class="nav-min-title">
+              C H O U ‘ S
+            </h1>
+            <div v-show="this.open == true" class="nav-min-area">
+                <button @click="goHome()" class="nav-button">HOME</button>
+                <button @click="goTheOurService()" class="nav-button">OUR SERVICE</button>
+                <button @click="goLogIn()" class="nav-button">LOG IN</button>
+                <button @click="goShopCart()" class="nav-button">SHOP CART</button>
+                <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>    
+            </div> 
+          </div> 
+      </nav>
       <div><router-view></router-view></div>
-      <!-- <nav>
+      <nav>
         <div class="nav-max">
           <div>
             <button @click="goHome()" class="nav-button">HOME</button>
             <button @click="goTheOurService()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
           </div>
-          <div @click="goHome()" class="nav-title-img">
-            <img src="./assets/logo.png">
+          <div @click="goHome()" class="nav-title">
+            <p>C H O U ‘ S</p>
           </div> 
-          <div class="nav-right-icon">
+          <div>
             <button @click="goLogIn()" class="nav-button">LOG IN</button>
             <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
             <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>
           </div>
         </div>
-      </nav> -->
-      <nav class="nav-min">
-          <div @click="openNav()"><i class="fas fa-align-justify nav-min-icon"></i></div> 
-          <div v-show="this.open == true">
-              <button @click="goHome()" class="nav-button">HOME</button>
-              <button @click="goTheOurService()" style="margin-right:0px;" class="nav-button">OUR SERVICE</button>
-              <div @click="goHome()" class="nav-title-img">
-              <img src="./assets/logo.png">
-              </div> 
-              <button @click="goLogIn()" class="nav-button">LOG IN</button>
-              <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
-              <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>    
-          </div> 
       </nav>
+
     </section>
     <footer>
       <div class="footer">
-        <div style="margin-bottom:20px;">
-          <h2>Contact Us</h2>
-          <div><i class="fas fa-phone"></i>  +886-0963-082-683</div>
-          <div><i class="fas fa-envelope"></i>  y10135124@gmail.com</div>
+        <div class="footer-part-1">
+          <div>
+            <h4>OPENING TIMINGS</h4>
+            <p><i class="fas fa-clock"></i> Mon - friday : 9am to 8pm</p>
+            <p><i class="fas fa-clock"></i> Saturday : 9am to 5pm</p>
+            <p><i class="fas fa-clock"></i> Sunday : 6am to 11pm</p>
+          </div>
+          <div>
+            <h4>OUR ADDRESS</h4>
+            <p><i class="fas fa-map-marker-alt"></i> 1st Floor, No. 8, Lane 4, Lane 106, Section 3, Nangang Road, Taipei</p>
+            <p><i class="fas fa-phone"></i>  +886-0963-082-683</p>
+            <p><i class="fas fa-envelope"></i>  y10135124@gmail.com</p>
+          </div>
+          <div>
+            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.402987779093!2d121.58723761462318!3d25.05432694363116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab7a3a080703%3A0xb61315cdf0cc455a!2zMTE15Y-w5YyX5biC5Y2X5riv5Y2A5Y2X5riv6Lev5LiJ5q61MTA25be3!5e0!3m2!1szh-TW!2stw!4v1562417268745!5m2!1szh-TW!2stw" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
         </div>
-        <div style="text-transform: uppercase;">© Copyright 2018 CHOU'. Site by CHOU.</div>
+        <div class="footer-part-2">© Copyright 2018 CHOU'. Site by CHOU.</div>
       </div>
     </footer> 
-    <div class="modal-mask" id="modal">
-      <TheSignIn class="signin-position" v-show="showLogin == true"></TheSignIn>
-      <div @click="close()" class="cross-position"><i class="fas fa-times-circle"></i></div>
+    <div class="modal-mask" id="modal" :checkState="checkState" :showMask="showMask">
+      <TheSignIn   v-show="checkState == true" class="signin-position"></TheSignIn>
     </div>
 </div>
 </template>
@@ -67,11 +80,10 @@ export default {
       name:'',
       open:false,
       open2:false,
-      showLogin:false,
     }
-
   },
   created() {
+    //ocalStorage計算小紅數字做法,缺點要切分頁才會跳數字,優點會保存
     if (localStorage.hasOwnProperty('buy')){
       let buy = JSON.parse(localStorage.getItem('buy'))
       console.log(buy.length)
@@ -82,11 +94,15 @@ export default {
     }else{
       this.showBuyNum = false
     }
+
+    //vuex計算小紅數字做法,缺點重新刷新數字會歸零,優點數字會即時更新
+    // this.$store.dispatch('actionUpdateCount')
+    // this.checkCount(this.count)
+
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.status = JSON.parse(localStorage.getItem('signinStatus')) 
     }
     if (localStorage.getItem('name')) {
-      //console.log('updated',localStorage.getItem('name'))
       this.name = localStorage.getItem('name')
     }
   
@@ -117,16 +133,31 @@ export default {
 
   },
   computed: {
-    // a() {
-    //   this.$store.dispatch('actionShowLogo')
-    // },
-    // status() {
-    //   this.status = JSON.parse(localStorage.getItem('signinStatus'))
-    //   return  this.status
-    // }
-    
+    getCount(){
+      console.log('com',this.$store.state.count)
+      return this.$store.state.count
+    },
+    checkState(){
+      return this.$store.state.showLogin
+    },
+    showMaskState(){
+      return this.$store.state.showMask
+    },
+    showMask(){
+      if(this.showMaskState == false){
+        document.getElementById("modal").style.display="none"
+      }
+      return 'close mask'
+    }   
   },
   methods: {
+    checkCount(count){
+      if(count <1){
+        this.showBuyNum = false
+      }else{
+        this.showBuyNum = true
+      }
+    },
     openNav(){
       this.open = !this.open
     },
@@ -149,12 +180,8 @@ export default {
 
 
     goLogIn() {
-      this.showLogin = true
+      this.$store.dispatch('actionShowLogin')  
       document.getElementById("modal").style.display="block"
-    },
-    close(){
-      document.getElementById("modal").style.display="none"
-      this.showLogin = false
     },
     goHome(){
       this.$router.push('/')
@@ -223,34 +250,51 @@ export default {
   },
 }
 </script>
-
 <style lang="scss">
-#app{
+@import './assets/style/share.scss';
+ #app{
   font-family:"Helvetica Neue", Helvetica, "Lantinghei SC Extralight", "Microsoft JhengHei", "Lucida Grande", 微軟正黑體, Verdana, Arial,  sans-serif;
   font-weight: 300;
-  color: #333333;
+  color: #2f3640;
+} 
+*{
+  box-sizing: border-box;
 }
 section{
   margin:0px;
 }
-*{
-  box-sizing: border-box;
+</style>
+<style lang="scss" scope>
+
+.modal-mask {
+display:none;
+position: fixed;
+z-index: 9998;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+transition: opacity .3s ease;
 }
+
+//login component position
 .signin-position{
   z-index:10;
   position: absolute;
   top:15%;
   left:30%;
-}
-.cross-position{
-  position: absolute;
-  z-index: 10;
-  top:18%;
-  right:31%;
-  i{
-    font-size: 25px;
+  @media only screen and (max-width: 768px) {
+  top:15%;
+  left:20%;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+  top:15%;
+  left:11%;
   }
 }
+
+//大尺寸的nav
 .nav-max{
   width:96vw;
   margin: 0 auto;
@@ -261,76 +305,77 @@ section{
   z-index: 10;
   display: flex;
   justify-content: space-between;
-}
-.nav-button{
-  width:10vw;
-  height:6vh;
-  border-radius:30px;
-  border:2px solid #fff;
-  font-weight:500;
-  background-color:rgb(127, 140, 141,0.5);
-  color: #fff;
-  margin-right:30px;
-  // @media only screen and (max-width: 768px) {
-  //   font-size:30px;
-  // }
-  // @media only screen and (min-width: 320px) and (max-width: 425px) {
-  //   font-size:25px;
-  // }
-  // @media only screen and (max-width: 375px){
-  //   font-size:20px;
-  // }
-}
-.nav-button:hover{
-  background-color:#fff;
-  color: rgb(231, 76, 60);
-
-}
-.nav-title-img{
-  margin-top: -2%;
-  padding-left: 5%;
-  img{
-  width:25vw;
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
-  img:hover{
+}
+.nav-title{
+  margin-top: -2%;
+  font-size:60px;
+  :hover{
     opacity: 0.5;
   }
-  // @media only screen and (max-width: 768px) {
-  //   img{
-  //     width:30vw;
-  //   }
-  // }
-  // @media only screen and (min-width: 320px) and (max-width: 425px) {
-  //   img{
-  //     width:40vw;
-  //   }
-  // }
 }
-.nav-right-icon{
-  display: flex;
-}
-.nav-right-icon-img{
-  width:4vw;
-  // @media only screen and (max-width: 768px) {
-  //     width:6vw;
-  // }
-  // @media only screen and (min-width: 320px) and (max-width: 425px) {
-  //     width:8vw;
-  // }
-}
-.nav-min{
 
-  //outline: 2px solid;
-  position: absolute;
-  top:1%;
-  right:3%;
+//小尺寸的nav
+.nav-min{
+  width: 100vw;
+  background-color: #ffffff;
+  height:8vh;
+  text-align: right;
+  padding: 20px;
+  position: relative;
+  height: 10vh; 
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
+}
+.nav-min-area{
   z-index:10;
-  // background-color: #ffffff;
+  position: absolute;  
+  top:100%;
+  left:0%;
+  padding:20px;
+  background-color: #ecf0f1;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .nav-min-icon{
   font-size: 30px;
-  
+
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    font-size:22px;
+  }
+
 }
+.nav-min-icon:hover{
+  opacity: 0.5;
+}
+.nav-min-title{
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  font-size:50px;
+  :hover{
+    opacity: 0.5;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size:40px;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    font-size:28px;
+  }
+  @media only screen and (max-width: 375px){
+    font-size:28px;
+  }
+}
+
+//商品購買數字小紅圈
 .pop-circle-buy-num{
   position: absolute;
   right:1%;
@@ -344,83 +389,74 @@ section{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.nav-sidebar{
-  position: absolute;
-  z-index: -100;
-  top:-100%;
-  left:-2%;
-  box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
-  width:100vw;
-  height: 150vh;
-  display: flex;
-  flex-direction: column;
-  padding:35px;
-  line-height: 40px;
-  overflow: hidden;
-  // background-image: url(./assets/home/nav.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  h1{
-    font-weight: 500;
-    margin-bottom: 30px;
-    margin-top: 70px;
-    font-weight: 400;
-  }
-  h3{
-    font-weight: 300;
-  }
-}
-.nav-sidebar-text{
-  position: absolute;
-  left:10%;
-  top:5%;
-  h3:hover{
-    opacity: 0.5;
+  @media only screen and (max-width: 768px) {
+    left:55%;
+    top:70%;
   }
 }
 
 
 .footer{
+  width:100vw;
+  padding: 10px;
+  font-weight: 400;
   position: absolute;
-  // bottom:-40%;
-  width:100vw ;
   display: flex;
-  padding: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  line-height: 30px;
-  background: url(./assets/home/1.jpg);
-  background-size: cover;
-  height:40vh;
-  font-weight: 400;
-  div{
-    font-size:18px;
-    line-height: 30px;
+  background-color:#ecf0f1;
+  @media only screen and (max-width: 768px){
+    font-size:10px;
   }
-  // @media only screen and (max-width: 375px){
-  //   div{
-  //     font-size: 15px;
-  //     line-height: 30px;
-  //   } 
-  // }
-  // @media only screen and (max-width: 320px){
-  //   div{
-  //     font-size: 12px;
-  //   } 
-  // }
 }
-.modal-mask {
-display:none;
-position: fixed;
-z-index: 9998;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.5);
-/* display: table; */
-transition: opacity .3s ease;
+.footer-part-1{  
+  width:95vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  h4{
+    margin-bottom: 20px;
+  } 
+  @media only screen and (max-width: 768px){
+      h4{
+         font-size:20px;
+      } 
+      div{
+        width:80vw;
+        height:20vh;
+      }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+      flex-direction: column;
+      justify-content: center;
+      h4{
+         font-size:15px;
+      } 
+      div{
+        width:80vw;
+        height:30vh;
+      }
+      div:nth-child(3){
+        height:40vh;
+      }
+  }
+}
+#map{
+@media only screen and (max-width: 768px){
+  width:100%;
+  height:100%;
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  width:100%;
+  height:100%;
+}
+}
+.footer-part-2{
+  width:100vw;
+  text-align: center;
+  text-transform: uppercase;
 }
 </style>

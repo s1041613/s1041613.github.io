@@ -10,11 +10,12 @@
           </div>
           <div class="signin-box-content-self-login">
             <h3>Or Sign in with your account</h3>
-            <span><i class="fas fa-user"></i><input v-model="account" /></span>
-            <span><i class="fas fa-key"></i><input v-model="passward" /></span>
+            <span><i class="fas fa-user"></i><input placeholder="account" v-model="account" /></span>
+            <span><i class="fas fa-key"></i><input placeholder="passward" v-model="passward" /></span>
             <button>Login</button>
             <span>Registered｜Forget passward</span>
           </div>
+          <div @click="close()" class="cross-position"><i class="fas fa-times-circle"></i></div>
         </div>
       </div>
   </section>
@@ -23,14 +24,16 @@
 
 <script>
 import Vue from 'vue'
+import store from "../store.js";
 export default {
+  store,
   components: {
 
   },
   data() {
     return {
-      account:"account",
-      passward:"passward",
+      account:"",
+      passward:"",
 
    
     }
@@ -54,10 +57,11 @@ export default {
   
   },
   methods: {
-    // close(){
-    //   document.getElementById("signin-area-is-show").style.display="none"
+    close(){
+      this.$store.dispatch('actionShowLogin')
+      this.$store.dispatch('actionShowMask')
+    },
 
-    // },
     //google登入
     googleLogIn() {
       Vue.googleAuth().directAccess()
@@ -131,26 +135,40 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .signin-area{
   display: block;
 }
 .signin-box{
+  position: relative;
   margin-right:40px;
-  outline: 2px solid #bdc3c7;
+  outline: 1px solid #bdc3c7;
   box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.05);
   display:flex;
-  padding: 50px;
   width: 40vw;
   height:80vh;
   flex-direction:column;
   align-items: center;
   justify-content: center;
   background: #ecf0f1;
+  @media only screen and (max-width: 768px) {
+    width:60vw;
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:80vw;
+  }
+}
+.cross-position{
+  position: absolute;
+  top:10px;
+  right:10px;
+  font-size: 20px;
+  :hover{
+    opacity: 0.5;
+  }
+
 }
 .signin-box-content{
-  position: relative;
-  padding:50px;
   display:flex;
   flex-direction:column;
   align-items: center;
@@ -158,7 +176,13 @@ export default {
     font-weight:400;
     margin-bottom: 30px;
   }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    h1{
+      font-size:30px;
+    }
+  }
 }
+
 .signin-box-content-gf-button{
   display: flex;
   flex-direction:column;
@@ -180,7 +204,7 @@ export default {
     height:5vh;
     border:1px solid #bdc3c7; 
     font-size: 18px;
-    color:#7f8c8d;
+    color:#2f3640;
     margin-bottom: 20px;
     font-weight: 200;
     padding: 10px;
@@ -208,6 +232,44 @@ export default {
     font-size: 15px;
     color:#7f8c8d;
   }
+  @media only screen and (max-width: 768px) {
+    h3{
+      font-size:28px;
+      font-weight:400;
+    }
+    > span > input{
+      width:20vw;
+    }
+    button{
+      width:25vw;
+    }
+  }
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    h3{
+      font-size:18px;
+      font-weight:400;
+    }
+    > span > input{
+      width:25vw;
+      font-size:12px;
+    }
+    button{
+      width:30vw;
+    }
+    > span > i{
+    font-size: 20px;
+    }
+  }
+  @media only screen and (max-width: 375px){
+    button{
+      width:35vw;
+    }
+  }
+  @media only screen and (max-width: 375px){
+    h3{
+      font-size:15px;
+    }
+  }
   
 }
 /* Shared */
@@ -224,6 +286,18 @@ export default {
   border-radius: 0.2em;
   font-size: 16px;
   color: #FFF;
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    width:40vw;
+    font-size: 12px;
+  }
+  @media only screen and (max-width: 375px) {
+    width:45vw;
+    font-size: 10px;
+  }
+  @media only screen and (max-width: 320px) {
+    width:55vw;
+    font-size: 10px;
+  }
 }
 //圖片部分
 .loginBtn:before {

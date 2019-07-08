@@ -5,18 +5,33 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    showLogo:false,
-
+    showLogin:false,
+    showMask:true,
+    count:0
   },
   mutations: {
-    changeShowLogo(state){
-      state.showLogo = true
+    changeshowLogin(state){
+      state.showLogin = !state.showLogin
+      state.showMask = true
     },
+    changeshowMask(state){
+        state.showMask = false    
+    },
+    updateCount(state){
+      state.count += 1  
+      console.log('store',state.count)
+  },
 
   },
   actions: {
-    actionShowLogo(context){
-      context.commit('hangeShowLogo')
+    actionShowLogin(context){
+      context.commit('changeshowLogin')
+    },
+    actionShowMask(context){
+      context.commit('changeshowMask')
+    },
+    actionUpdateCount(context){
+      context.commit('updateCount')
     },
 
   }
