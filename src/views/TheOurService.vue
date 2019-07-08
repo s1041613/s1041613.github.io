@@ -94,10 +94,15 @@ export default {
     background-size:cover;
   }
 .my-layout{
-  //border:2px solid;
   padding: 40px;
-}
+  @media only screen and (min-width: 320px) and (max-width: 425px) {
+    padding: 0px;
+    .my-font-css{
+      padding: 40px;
+    }
 
+  }
+}
 //our service block
 .food{
   //border: 2px solid;
@@ -173,29 +178,26 @@ export default {
 }
 //food gallery block
 .gallery-food{
-  border: 2px solid;
   display: flex;
   flex-wrap:wrap;
   justify-content: center;
+  margin-bottom: 30px;
   @media only screen and (max-width: 768px) {
     padding: 0px;
   }
+
 }
 .img-box{
-  
   width:calc((100%-80px) /4);
   height:30vh;
   overflow: hidden;
   @media only screen and (max-width: 768px) {
-    border: 2px solid red;
     width:calc((100%-80px) /3);
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
-    border: 2px solid pink;
     width:calc((100%-80px) /2);
   }
-  @media only screen and (max-width: 375px){
-    border: 2px solid orange;
+  @media only screen and (max-width: 320px){
     width:calc((100%-80px) /2);
     height:20vh;
   }
