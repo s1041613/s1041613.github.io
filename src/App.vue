@@ -6,7 +6,7 @@
             <h1 @click="goHome()" class="nav-min-title">
               C H O U ‘ S
             </h1>
-            <div v-show="this.openNav == true" class="nav-min-area">
+            <div v-show="this.open == true" class="nav-min-area">
                 <button @click="goHome()" class="nav-button">HOME</button>
                 <button @click="goTheOurService()" class="nav-button">OUR SERVICE</button>
                 <button @click="goLogIn()" v-if="this.signinStatus != true" class="nav-button">LOG IN</button>
@@ -57,7 +57,7 @@
             <p><i class="fas fa-envelope"></i>  y10135124@gmail.com</p>
           </div>
           <div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.727893161222!2d121.5473177146231!3d25.04330684407314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc4ded4372b%3A0x18d03f0d005300b!2zVG9hc3RlcmlhIENhZmUg5ZCQ5Y-45Yip5LqeIOaVpuWNl-W6lw!5e0!3m2!1szh-TW!2stw!4v1562747608880!5m2!1szh-TW!2stw" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.727893161222!2d121.5473177146231!3d25.04330684407314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc4ded4372b%3A0x18d03f0d005300b!2zVG9hc3RlcmlhIENhZmUg5ZCQ5Y-45Yip5LqeIOaVpuWNl-W6lw!5e0!3m2!1szh-TW!2stw!4v1562747608880!5m2!1szh-TW!2stw" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
         </div>
         <div class="footer-part-2">© Copyright 2018 CHOU'. Site by CHOU.</div>
@@ -87,7 +87,7 @@ export default {
       signinStatus:false,
       //userName
       name:'',
-      openNav:false,
+      open:false,
       //登入成功,失敗,登出成功的提示框
       hintText:'',
     }
@@ -182,7 +182,7 @@ export default {
       }
     },
     openNav(){
-      this.openNav = !this.openNav
+      this.open = !this.open
     },
     goTheOurService(){
       this.$router.push('/TheOurService')
