@@ -89,7 +89,7 @@ export default {
     },
     googleOnSignInError(error) {
       this.response = 'Failed to sign-in'
-      localStorage.setItem("signinStatus", "failed")
+      localStorage.setItem("signinStatus",JSON.stringify("failed"))
     },
     //fb登入
 
@@ -126,7 +126,7 @@ export default {
           } 
         }else{
           console.log('fb 登入失敗')
-          localStorage.setItem("signinStatus", "failed")
+          localStorage.setItem("signinStatus", JSON.stringify("failed"))
         }
         //res裡面status會有幾種狀態
         //connected: 使用者已登入 FB，且授權你的 app 使用
