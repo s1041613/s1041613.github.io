@@ -22,7 +22,7 @@
           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum,</p>
           <p>you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. </p>
         </div>
-        <img src="../assets/home/5.jpg">
+        <div><img src="../assets/home/5.jpg"></div>
       </div>
     </section>
     <section>
@@ -37,7 +37,7 @@
           <p>Get a lottery ticket with spending over $588</p>
           <p>Get a lottery ticket and a free breakfast when you spend 988</p>
         </div>
-        <img src="../assets/home/6.jpg">
+        <div><img src="../assets/home/6.jpg"></div>
       </div>
     </section>
   </div>
@@ -147,13 +147,15 @@ section{
   width:100vw;
 }
 .section-information{
+    //outline: 2px solid;
     margin: 0 auto;
     padding: 50px ;
     display: flex;
     width: 100vw;
     justify-content: space-between;
-    div:nth-child(2){   
-      padding-top:40px;
+    div:nth-child(2){  
+      display: flex;
+      align-items: flex-end;
     }
     p{
       font-size: 20px;

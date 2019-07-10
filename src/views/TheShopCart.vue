@@ -1,9 +1,9 @@
 <template>
-<div >
+<div>
   <!-- 購物車沒東西的時候 -->
   <section class="noItem flex-row back-img" v-show="this.haveItem == 0">
       <i class="fas fa-shopping-cart img-shopcar">
-        <button class="nav-button plus" @click="goBREAKFAST()">Buy Now</button>
+        <button class="nav-button plus" @click="goOurService()">Buy Now</button>
       </i>
   </section>
   <section>
@@ -146,6 +146,11 @@
       <div>Every item is required <i class="fas fa-exclamation-triangle"></i></div>
     </div>
   </div>
+  <div id="hint-box4" class="hint-box-show">
+    <div class="delete-hint-box hint-box">
+      <div>Order completed <i class="far fa-smile"></i></div>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -240,15 +245,20 @@ export default {
 
   },
   methods: {
-    goBREAKFAST(){
-      this.$router.push({path:"/TheBreakfast"})
+    goOurService(){
+      this.$router.push({path:"/TheOurService"})
     },
     goHome(){
       this.$router.push({path:'/'})
     },
     finish(){
       localStorage.removeItem('buy')
-      this.$router.push({path:'/'})
+      document.getElementById('hint-box4').style.display="block"
+      var vm = this
+      var t=setTimeout(function(){
+        document.getElementById('hint-box4').style.display="none"
+        vm.$router.push({path:'/'})
+        },2000);  
     },
     deleteItem(id){
       document.getElementById('hint-box2').style.display="block"
@@ -330,7 +340,7 @@ export default {
     position: relative;
     font-size: 180px;
     margin-bottom: 20px;
-    color: rgba(44, 62, 80,0.5);
+    color: rgba(44, 62, 80,0.6);
   }
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     i{
@@ -457,6 +467,7 @@ export default {
     font-weight:600;
   }
   input{
+    padding: 15px;
     border-radius: 20px;
     width:70vw;
     height:5vh;

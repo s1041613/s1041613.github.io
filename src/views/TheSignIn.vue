@@ -19,6 +19,11 @@
         </div>
       </div>
   </section>
+  <!-- <div id="hint-box5" class="hint-box-show">
+    <div class="delete-hint-box hint-box">
+      <div>{{this.showIsLogin}}</div>
+    </div>
+  </div> -->
 </div>
 </template>
 
@@ -59,7 +64,6 @@ export default {
   methods: {
     close(){
       this.$store.dispatch('actionShowLogin')
-      this.$store.dispatch('actionShowMask')
     },
 
     //google登入
@@ -69,21 +73,23 @@ export default {
     },
     googleOnSignInSuccess: function(googleUser) {
       let vm=this;
+      //登入成功後,讓ShowLogin從true變成false
+      vm.$store.dispatch('actionShowLogin')
       if (!localStorage.hasOwnProperty('signinStatus')) {
         localStorage.setItem('type','Google')
         localStorage.setItem("signinStatus", true)
       } 
       var prof = googleUser.getBasicProfile()
-      console.log('googleUser.getBasicProfile()',googleUser.getBasicProfile())
+      //console.log('googleUser.getBasicProfile()',googleUser.getBasicProfile())
       vm.signinEmail = prof.getEmail()
       let name = prof.ig 
       localStorage.setItem("signInEmail", JSON.stringify(vm.signinEmail))//localstroage remembers user is signed in
       localStorage.setItem("name",JSON.stringify(name))
-      this.$router.push({name:'TheHome' , params:{ status:true }})
+      
     },
     googleOnSignInError(error) {
       this.response = 'Failed to sign-in'
-      console.log('status',this.response)
+      localStorage.setItem("signinStatus", "failed")
     },
     //fb登入
 
@@ -102,7 +108,10 @@ export default {
       FB.login(function (response) {
         console.log('res', response)
         if (response.status != 'unknown') {
-          vm.$router.push({path:'/'})
+          //登入成功後,讓ShowLogin從true變成false
+          vm.$store.dispatch('actionShowLogin')
+
+          vm.$router.push({name:'TheHome' , params:{ status:true }})
           if (!localStorage.hasOwnProperty('signinStatus')) {
             localStorage.setItem("type",'Fb')
             localStorage.setItem("signinStatus", true)
@@ -110,11 +119,14 @@ export default {
           if (response.status == 'connected') {
             console.log('使用者已登入 FB，且授權你的 app 使用')
             vm.getFbProfile()
+            
           }else{
             console.log('使用者已登入 FB，但未授權你的 app 使用')
+            
           } 
         }else{
           console.log('fb 登入失敗')
+          localStorage.setItem("signinStatus", "failed")
         }
         //res裡面status會有幾種狀態
         //connected: 使用者已登入 FB，且授權你的 app 使用
@@ -166,7 +178,6 @@ export default {
   :hover{
     opacity: 0.5;
   }
-
 }
 .signin-box-content{
   display:flex;

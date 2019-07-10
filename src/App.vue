@@ -6,10 +6,11 @@
             <h1 @click="goHome()" class="nav-min-title">
               C H O U ‘ S
             </h1>
-            <div v-show="this.open == true" class="nav-min-area">
+            <div v-show="this.openNav == true" class="nav-min-area">
                 <button @click="goHome()" class="nav-button">HOME</button>
                 <button @click="goTheOurService()" class="nav-button">OUR SERVICE</button>
-                <button @click="goLogIn()" class="nav-button">LOG IN</button>
+                <button @click="goLogIn()" v-if="this.signinStatus != true" class="nav-button">LOG IN</button>
+                <button @click="logOut()" v-if="this.signinStatus == true" class="nav-button">LOG OUT</button>
                 <button @click="goShopCart()" class="nav-button">SHOP CART</button>
                 <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>    
             </div> 
@@ -26,12 +27,18 @@
             <p>C H O U ‘ S</p>
           </div> 
           <div>
-            <button @click="goLogIn()" class="nav-button">LOG IN</button>
+            <button @click="goLogIn()" v-if="this.signinStatus != true" class="nav-button">LOG IN</button>
+            <button @click="logOut()" v-if="this.signinStatus == true" class="nav-button">LOG OUT</button>
             <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
             <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>
           </div>
         </div>
       </nav>
+      <div id="hint-box5" class="hint-box-show">
+        <div class="delete-hint-box hint-box">
+          {{this.hintText}}
+        </div>
+      </div>
 
     </section>
     <footer>
@@ -45,19 +52,19 @@
           </div>
           <div>
             <h4>OUR ADDRESS</h4>
-            <p><i class="fas fa-map-marker-alt"></i> 1st Floor, No. 8, Lane 4, Lane 106, Section 3, Nangang Road, Taipei</p>
+            <p><i class="fas fa-map-marker-alt"></i> 106 No. 3, Lane 169, Section 1, Dunhua South Road, Daan District, Taipei City</p>
             <p><i class="fas fa-phone"></i>  +886-0963-082-683</p>
             <p><i class="fas fa-envelope"></i>  y10135124@gmail.com</p>
           </div>
           <div>
-            <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.402987779093!2d121.58723761462318!3d25.05432694363116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442ab7a3a080703%3A0xb61315cdf0cc455a!2zMTE15Y-w5YyX5biC5Y2X5riv5Y2A5Y2X5riv6Lev5LiJ5q61MTA25be3!5e0!3m2!1szh-TW!2stw!4v1562417268745!5m2!1szh-TW!2stw" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.727893161222!2d121.5473177146231!3d25.04330684407314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abc4ded4372b%3A0x18d03f0d005300b!2zVG9hc3RlcmlhIENhZmUg5ZCQ5Y-45Yip5LqeIOaVpuWNl-W6lw!5e0!3m2!1szh-TW!2stw!4v1562747608880!5m2!1szh-TW!2stw" width="400" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
           </div>
         </div>
         <div class="footer-part-2">© Copyright 2018 CHOU'. Site by CHOU.</div>
       </div>
     </footer> 
-    <div class="modal-mask" id="modal" :checkState="checkState" :showMask="showMask">
-      <TheSignIn   v-show="checkState == true" class="signin-position"></TheSignIn>
+    <div class="modal-mask" id="modal" v-show="checkState == true" :checkState="checkState">
+      <TheSignIn class="signin-position"></TheSignIn>
     </div>
 </div>
 </template>
@@ -73,13 +80,16 @@ export default {
   },
   data() {
     return {
+      //小紅圈圈數字
       showBuyNum:false,
       buyNum:0,
-      text:"LOG IN",
-      status:false,
+
+      signinStatus:false,
+      //userName
       name:'',
-      open:false,
-      open2:false,
+      openNav:false,
+      //登入成功,失敗,登出成功的提示框
+      hintText:'',
     }
   },
   created() {
@@ -100,15 +110,13 @@ export default {
     // this.checkCount(this.count)
 
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
-      this.status = JSON.parse(localStorage.getItem('signinStatus')) 
+      this.signinStatus = JSON.parse(localStorage.getItem('signinStatus')) 
+
     }
     if (localStorage.getItem('name')) {
       this.name = localStorage.getItem('name')
     }
   
-
-  },
-  watch: {
 
   },
   updated() {
@@ -124,13 +132,37 @@ export default {
     }
 
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
-      this.status = JSON.parse(localStorage.getItem('signinStatus')) 
+      this.signinStatus = JSON.parse(localStorage.getItem('signinStatus')) 
     }
     if (localStorage.getItem('name')) {
       //console.log('updated',localStorage.getItem('name'))
       this.name = localStorage.getItem('name')
     }
 
+  },
+  watch:{
+    signinStatus() {
+      if(this.signinStatus == true){
+        this.hintText="Sign in suceesfully"
+      }else if(this.signinStatus == "failed"){
+        this.hintText="Sign in failed"
+      }
+      else{
+        this.hintText="Sign out suceesfully"
+      }
+      document.getElementById('hint-box5').style.display="block"
+      var t=setTimeout(function(){
+        document.getElementById('hint-box5').style.display="none"
+      },2000);
+    },
+    hintText() {
+      if(this.hintText == "Sign out failed"){
+        document.getElementById('hint-box5').style.display="block"
+        var t=setTimeout(function(){
+          document.getElementById('hint-box5').style.display="none"
+        },2000);
+      }
+    }
   },
   computed: {
     getCount(){
@@ -140,15 +172,6 @@ export default {
     checkState(){
       return this.$store.state.showLogin
     },
-    showMaskState(){
-      return this.$store.state.showMask
-    },
-    showMask(){
-      if(this.showMaskState == false){
-        document.getElementById("modal").style.display="none"
-      }
-      return 'close mask'
-    }   
   },
   methods: {
     checkCount(count){
@@ -159,29 +182,16 @@ export default {
       }
     },
     openNav(){
-      this.open = !this.open
-    },
-    openNav2(){
-      this.open2 = !this.open2
-    },
-    goTheClothes(){
-      this.$router.push('/TheClothes')
-
+      this.openNav = !this.openNav
     },
     goTheOurService(){
       this.$router.push('/TheOurService')
     },
-    goTheVacation(){
-      this.$router.push('/TheVacation')
-    },
     goTheBreakfast(){
       this.$router.push('/TheBreakfast')
     },
-
-
     goLogIn() {
       this.$store.dispatch('actionShowLogin')  
-      document.getElementById("modal").style.display="block"
     },
     goHome(){
       this.$router.push('/')
@@ -191,19 +201,21 @@ export default {
       let type = localStorage.getItem("type")
       if (type == 'Google') {
         Vue.googleAuth().signOut(function() {
-          vm.status = false
+          vm.signinStatus = false
           vm.name = ''
           localStorage.clear()
         }, function(error) {
+          this.hintText="Sign out failed"
           console.log('signOut() Fail')
         })
       } else {
         FB.logout(function (response) {
           if (response.status == "unknown") {
             localStorage.clear()
-            vm.status = false
+            vm.signinStatus = false
             vm.name = ''
           } else {
+            this.hintText="Sign out failed"
             console.log('fb登出失敗')
           }
           console.log('res when logout', response)
@@ -215,9 +227,6 @@ export default {
     },
     goShopCart() {
       this.$router.push('/TheShopCart')
-    },
-    goQA() {
-      this.$router.push('/TheQA')
     },
   },
   mounted() {
@@ -267,7 +276,7 @@ section{
 <style lang="scss" scope>
 
 .modal-mask {
-display:none;
+display:block;
 position: fixed;
 z-index: 9998;
 top: 0;

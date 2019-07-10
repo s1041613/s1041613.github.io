@@ -4,7 +4,7 @@
     <section>
       <div class="layout">
         <div class="my-font-css mt-30">
-          <span>dinner </span>
+          <span>Dinner </span>
           <span>Menu</span>
         </div>
         <div class="food-type">

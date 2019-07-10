@@ -32,14 +32,6 @@ export default new Router({
       }
 
     },
-    // {
-    //   path: '/TheClothes',
-    //   name: 'TheClothes',
-    //   component:TheClothes,
-    //   meta: {
-    //     showTitle: true,
-    //   },
-    // },
     {
       path: '/TheOurService',
       name: 'TheOurService',
@@ -48,14 +40,6 @@ export default new Router({
         showTitle: true,
       }
     },
-    // {
-    //   path: '/TheBottom/bottomItem/:id',
-    //   name: 'TheBottomItem',
-    //   component:TheBottomItem,
-    //   meta: {
-    //     showTitle: true,
-    //   }
-    // },
     {
       path: '/TheDinner',
       name: 'TheDinner',
