@@ -149,7 +149,7 @@ section{
 .section-information{
     //outline: 2px solid;
     margin: 0 auto;
-    padding: 50px ;
+    padding: 100px ;
     display: flex;
     width: 100vw;
     justify-content: space-between;
@@ -179,6 +179,7 @@ section{
       }
     }
     @media only screen and (min-width: 320px) and (max-width: 425px) {
+      padding: 50px ;
       h1{
         font-size:20px;
       }
@@ -189,12 +190,5 @@ section{
         font-size: 10px;
       }
     }
-      @media only screen and (max-width: 320px){
-        div:nth-child(2){
-          img{
-            width:80vw;
-          }
-        }
-      }
 }
 </style>

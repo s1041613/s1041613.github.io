@@ -330,7 +330,7 @@ export default {
   align-items: center;
 }
 .back-img{
-  background: url('../assets/home/2.jpg');
+  background: url("../assets/home/2.jpg");
   background-size:cover;
 }
 .noItem{

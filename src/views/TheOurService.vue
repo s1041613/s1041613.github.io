@@ -90,17 +90,17 @@ export default {
 .head-img{
     width:100vw;
     height:50vh;
-    background:url(../assets/home/2.jpg);
+    background:url("../assets/home/2.jpg");
     background-size:cover;
   }
 .my-layout{
-  padding: 40px;
+  //outline: 2px solid;
+  padding: 100px;
   @media only screen and (min-width: 320px) and (max-width: 425px) {
-    padding: 0px;
+    padding: 50px;
     .my-font-css{
       padding: 40px;
     }
-
   }
 }
 //our service block
