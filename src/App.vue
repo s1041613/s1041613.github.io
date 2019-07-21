@@ -12,7 +12,7 @@
                 <button @click="goLogIn()" v-if="this.signinStatus != true" class="nav-button">LOG IN</button>
                 <button @click="logOut()" v-if="this.signinStatus == true" class="nav-button">LOG OUT</button>
                 <button @click="goShopCart()" class="nav-button">SHOP CART</button>
-                <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>    
+                <div :getShowCount="getShowCount" v-show="this.getShowCount > 0" class="pop-circle-buy-num">{{this.getShowCount}}</div>    
             </div> 
           </div> 
       </nav>
@@ -30,7 +30,7 @@
             <button @click="goLogIn()" v-if="this.signinStatus != true" class="nav-button">LOG IN</button>
             <button @click="logOut()" v-if="this.signinStatus == true" class="nav-button">LOG OUT</button>
             <button @click="goShopCart()" style="margin-right:0px;" class="nav-button">SHOP CART</button>
-            <div v-show="showBuyNum == true" class="pop-circle-buy-num">{{this.buyNum}}</div>
+            <div :getShowCount="getShowCount" v-show="this.getShowCount > 0" class="pop-circle-buy-num">{{this.getShowCount}}</div>
           </div>
         </div>
       </nav>
@@ -80,9 +80,6 @@ export default {
   },
   data() {
     return {
-      //小紅圈圈數字
-      showBuyNum:false,
-      buyNum:0,
 
       signinStatus:false,
       //userName
@@ -93,21 +90,6 @@ export default {
     }
   },
   created() {
-    //ocalStorage計算小紅數字做法,缺點要切分頁才會跳數字,優點會保存
-    if (localStorage.hasOwnProperty('buy')){
-      let buy = JSON.parse(localStorage.getItem('buy'))
-      console.log(buy.length)
-      if( (buy.length +1) > 0){
-        this.buyNum = buy.length
-        this.showBuyNum = true
-      }
-    }else{
-      this.showBuyNum = false
-    }
-
-    //vuex計算小紅數字做法,缺點重新刷新數字會歸零,優點數字會即時更新
-    // this.$store.dispatch('actionUpdateCount')
-    // this.checkCount(this.count)
 
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.signinStatus = JSON.parse(localStorage.getItem('signinStatus')) 
@@ -120,16 +102,6 @@ export default {
 
   },
   updated() {
-    if (localStorage.hasOwnProperty('buy')){
-      let buy = JSON.parse(localStorage.getItem('buy'))
-      console.log(buy.length)
-      if( (buy.length +1) > 0){
-        this.buyNum = buy.length
-        this.showBuyNum = true
-      }
-    }else{
-      this.showBuyNum = false
-    }
 
     if (JSON.parse(localStorage.getItem('signinStatus'))) {
       this.signinStatus = JSON.parse(localStorage.getItem('signinStatus')) 
@@ -165,9 +137,8 @@ export default {
     }
   },
   computed: {
-    getCount(){
-      console.log('com',this.$store.state.count)
-      return this.$store.state.count
+    getShowCount(){
+      return this.$store.state.showCount
     },
     checkState(){
       return this.$store.state.showLogin

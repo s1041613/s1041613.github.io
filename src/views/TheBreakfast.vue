@@ -15,7 +15,7 @@
                 <div>{{i.name}}</div>
                 <div>
                   <span>{{i.price}}</span>
-                  <select>
+                  <select v-model="count">
                     <option v-for="num in 10" :key="num.key">{{num}}</option>
                   </select>
                   <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
@@ -31,7 +31,7 @@
                 <div>{{i.name}}</div>
                 <div>
                   <span>{{i.price}}</span>
-                  <select>
+                  <select v-model="count">
                     <option v-for="num in 10" :key="num.key">{{num}}</option>
                   </select>
                   <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
@@ -47,7 +47,7 @@
                 <div>{{i.name}}</div>
                 <div>
                   <span>{{i.price}}</span>
-                  <select>
+                  <select v-model="count">
                     <option v-for="num in 10" :key="num.key">{{num}}</option>
                   </select>
                   <i @click="add(i.id,i.name,i.price)" class="fas fa-plus-square icon-plus"></i>    
@@ -76,6 +76,7 @@ export default {
   data() {
     return {
       breakfast,
+      
     }
   },
   created() {
@@ -85,28 +86,33 @@ export default {
   updated() {
   },
   computed: {
-
-  
-
-  
-  
+    count:{
+      get() {
+        return this.$store.state.count
+      },
+      set(value) {
+        this.$store.commit('updateCount', value)
+      },
+    },
+    getItemCount(){
+      return this.$store.state.itemCount
+    },
   },
   methods: {
     add(id,name,price){
-      this.$store.dispatch('actionUpdateCount')
+      
       document.getElementById('hint-box').style.display="block"
       var t=setTimeout(function(){
         document.getElementById('hint-box').style.display="none"
         },1000);
       let buyItem=[]
-      let count=1
+      let count=this.getItemCount
       let item={
         id:id,
         name: name,
         price: price,
         count:count,
         total:price*count,
-        delete:"delete"
       }
       buyItem.push(item)
       item ={}

@@ -1,7 +1,7 @@
 <template>
 <div>
   <!-- 購物車沒東西的時候 -->
-  <section class="noItem flex-row back-img" v-show="this.haveItem == 0">
+  <section class="noItem flex-row back-img" v-show="this.getShowCount <  1">
       <i class="fas fa-shopping-cart img-shopcar">
         <button class="nav-button plus" @click="goOurService()">Buy Now</button>
       </i>
@@ -15,7 +15,7 @@
         <div>STEP.3 Confirm</div>
       </div>
       <div class="test">
-          <div class="section2" :a="a">
+          <div class="section2" :removeDuplicate="removeDuplicate">
             <table class="table" id="my-table-css">
               <thead>
                 <tr>
@@ -32,7 +32,7 @@
                   <td>{{i.price}}</td>
                   <td>{{i.count}}</td>
                   <td>{{ (i.count) * (i.price)}}</td>
-                  <td @click="deleteItem(i.id)"><i class="fas fa-trash-alt"></i></td>
+                  <td @click="deleteItem(i.id,i.count)"><i class="fas fa-trash-alt"></i></td>
                 </tr>
               </tbody>
             </table>
@@ -102,7 +102,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for='i in shopCart' :key="i.key" :a="a">
+                <tr v-for='i in shopCart' :key="i.key" :removeDuplicate="removeDuplicate">
                   <td>{{i.name}}</td>
                   <td>{{i.price}}</td>
                   <td>{{i.count}}</td>
@@ -177,17 +177,13 @@ export default {
   created() {
     this.shopCart = JSON.parse(localStorage.getItem('buy'))
     console.log("this.shopCart",this.shopCart)
+    if(this.getShowCount > 0){
+      this.haveItem = 1
+    }else{
+      this.haveItem = 0
+    }
   },
   watch: {
-    shopCart(){
-      if(this.shopCart.length > 0 && this.shopCart !== null){
-        this.haveItem = 1
-      }else{
-        this.haveItem = 0
-
-      } 
-    },
-
   },
   updated() {
   },
@@ -208,8 +204,8 @@ export default {
         this.email = localStorage.getItem('signInEmail')
         this.email = this.email.substring(1, (this.email.length) -1)
       }
-    },
-    a(){
+    }, 
+    removeDuplicate(){
         if(parseInt(this.haveItem) > 0 && this.shopCart.length > 1){
           let id=[],repeatIndex=[],repeatId=[]
           for(let i in this.shopCart){
@@ -239,8 +235,9 @@ export default {
       }else{
         return this.shopCart
       }
-
-
+    },
+    getShowCount(){
+      return this.$store.state.showCount
     },
 
   },
@@ -260,11 +257,12 @@ export default {
         vm.$router.push({path:'/'})
         },2000);  
     },
-    deleteItem(id){
+    deleteItem(id,count){
       document.getElementById('hint-box2').style.display="block"
       var t=setTimeout(function(){
         document.getElementById('hint-box2').style.display="none"
         },1000);
+      this.$store.commit('changeShowCount',count)
       let nowItem = JSON.parse(localStorage.getItem('buy'))
       let newItem =[]
       nowItem.forEach((nowItem) => {

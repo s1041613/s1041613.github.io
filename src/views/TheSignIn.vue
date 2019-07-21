@@ -70,7 +70,7 @@ export default {
     googleLogIn() {
       Vue.googleAuth().directAccess()
       Vue.googleAuth().signIn(this.googleOnSignInSuccess, this.googleOnSignInError) 
-    },
+    },  
     googleOnSignInSuccess: function(googleUser) {
       let vm=this;
       //登入成功後,讓ShowLogin從true變成false
