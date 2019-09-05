@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="menu-bar">
+      hfgdjshgidjhfgjihd
       <div id="logo" class="logo" @click="goHome">
         <img src="../src/assets/logo2.png" style="width:250px;">
       </div>

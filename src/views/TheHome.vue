@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <img src="../assets/h1.jpg"> -->
+    nkjhjklhklhj
     <BasePictureArea></BasePictureArea>
     <BaseItemArea></BaseItemArea>
 
